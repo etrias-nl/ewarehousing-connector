@@ -10,20 +10,18 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Tests\Etrias\PaazlConnector\Functional\Services;
+namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Services\AuthenticationService;
 use Etrias\EwarehousingConnector\Services\AuthenticationServiceInterface;
-use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Psr7\Request;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversNothing
  */
-abstract class AbstractServiceTest
+abstract class AbstractServiceTest extends TestCase
 {
     /** @var  EwarehousingClientInterface */
     protected $client;
@@ -33,17 +31,14 @@ abstract class AbstractServiceTest
 
     public function setUp()
     {
-        $this->client = new EwarehousingClient();
+        $this->client = new EwarehousingClient([
+            'base_uri' => EwarehousingClientInterface::ENDPOINT_TEST
+        ]);
         $this->authenticationService = new AuthenticationService(
             $this->client,
             getenv('USERNAME'),
             getenv('CUSTOMERID'),
             getenv('PASSWORD')
         );
-    }
-
-    public function testGetContext()
-    {
-
     }
 }

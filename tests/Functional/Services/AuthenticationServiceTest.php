@@ -10,10 +10,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Tests\Etrias\PaazlConnector\Functional\Services;
+namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
-use Etrias\EwarehousingConnector\Services\AuthenticationService;
-use Etrias\EwarehousingConnector\Services\AuthenticationServiceInterface;
 
 /**
  * @coversNothing
