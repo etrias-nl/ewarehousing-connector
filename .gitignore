@@ -1,0 +1,8 @@
+.DS_Store
+!.gitkeep
+/.idea
+/.php_cs.cache
+/.phpstorm.meta.php
+/coverage/
+vendor/
+

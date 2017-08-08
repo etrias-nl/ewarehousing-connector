@@ -1,0 +1,34 @@
+{
+    "name": "etrias/ewarehousing-connector",
+    "description": "PHP connector for ewarehousing api",
+    "require": {
+        "php": ">=5.3.3",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Etrias\\EwarehousingConnector\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Etrias\\EwarehousingConnector\\": "./tests/"
+        }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.4",
+        "phpunit/phpunit": "^6.2"
+    },
+    "scripts": {
+        "fix-style": [
+            "vendor/bin/php-cs-fixer fix --diff --show-progress run-in"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Christ-Jan",
+            "email": "christ-jan@etrias.nl"
+        }
+    ],
+    "minimum-stability": "stable"
+}
