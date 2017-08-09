@@ -14,11 +14,13 @@ use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Exceptions\OrderNotFoundException;
 use Etrias\EwarehousingConnector\Response\OrderResponse;
+use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
 use Etrias\EwarehousingConnector\Types\Address;
 use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\Order;
 use Etrias\EwarehousingConnector\Types\OrderLine;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use JMS\Serializer\SerializerInterface;
 
@@ -73,42 +75,64 @@ class OrderService implements OrderServiceInterface
             'direction' => $direction
         ];
 
-        $guzzleResponse = $this->client->get('3/orders', ['query' => $data]);
+        $guzzleResponse = $this->client->get('3/orders', [RequestOptions::QUERY => $data]);
         return $this->deserializeResponse($guzzleResponse, 'array<'.OrderResponse::class.'>');
     }
 
     /**
      * @param string $reference
      * @return OrderResponse
-     * @throws OrderNotFoundException
      */
     public function getOrder($reference)
     {
+        $guzzleResponse = $this->client->get('2/orders/order', [RequestOptions::QUERY => ['reference' => $reference]]);
 
-        $guzzleResponse = $this->client->get('2/orders/order', ['query' => ['reference' => $reference]]);
-        $order = $this->deserializeResponse($guzzleResponse, OrderResponse::class);
-
-        return $order;
+        return $this->deserializeResponse($guzzleResponse, OrderResponse::class);
     }
 
     public function addOrder(Order $order) {
-        //TODO
+        $json = $this->serializer->serialize($order, 'json');
+        $guzzleResponse = $this->client->post('/3/orders/create', [RequestOptions::FORM_PARAMS => json_decode($json, true)]);
+
+        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
 
+    /**
+     * @param $reference
+     * @param DateTime $date
+     * @param Address|null $address
+     * @param array|null $orderLines
+     * @return SuccessResponse
+     */
     public function updateOrder(
         $reference,
         DateTime $date,
         Address $address = null,
         array $orderLines = null
     ) {
-        //TODO
+        $data = [
+            'reference' => $reference,
+            'date' => $date->format('Y-m-d'),
+            'address' => json_decode($this->serializer->serialize($address, 'json'), true),
+            'order_lines' => json_decode($this->serializer->serialize($orderLines, 'json'), true)
+        ];
+
+        $guzzleResponse = $this->client->post('/1/orders/update', [RequestOptions::FORM_PARAMS => $data]);
+
+        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
 
+    /**
+     * @param string $reference
+     * @param OrderLine[] $orderLines
+     */
     public function cancelOrder(
         $reference,
         array $orderLines = []
     ) {
-        //TODO
+
+        
+        $guzzleResponse = $this->client->post('/1/orders/cancel/'.$reference, [RequestOptions::FORM_PARAMS => $data]);
     }
 
     public function getTrackingCode($reference) {

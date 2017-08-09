@@ -1,0 +1,11 @@
+Etrias\EwarehousingConnector\Types\Order:
+  properties:
+    reference:
+      type: string
+    date:
+      type: DateTime<'Y-m-d'>
+    address:
+      type: Etrias\EwarehousingConnector\Types\Address
+    orderLines:
+      type: array<Etrias\EwarehousingConnector\Types\OrderLine>
+      serialized_name: order_lines
