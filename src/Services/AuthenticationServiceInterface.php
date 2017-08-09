@@ -8,11 +8,18 @@
 
 namespace Etrias\EwarehousingConnector\Services;
 
+use Etrias\EwarehousingConnector\Response\GetContextResponse;
+
 interface AuthenticationServiceInterface
 {
 
     /**
-     * @return string
+     * @return GetContextResponse
      */
     public function getContext();
+
+    /**
+     * @return string
+     */
+    public function getHash();
 }

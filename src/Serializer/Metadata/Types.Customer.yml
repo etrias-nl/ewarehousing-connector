@@ -1,0 +1,7 @@
+Etrias\EwarehousingConnector\Types\Customer:
+  properties:
+    name:
+      type: string
+    id:
+      type: string
+      serialized_name: customer_id

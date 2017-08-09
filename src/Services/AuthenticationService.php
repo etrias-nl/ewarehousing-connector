@@ -11,11 +11,17 @@ namespace Etrias\EwarehousingConnector\Services;
 
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
+use Etrias\EwarehousingConnector\Response\GetContextResponse;
+use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
+use JMS\Serializer\SerializerInterface;
+use Psr\Cache\CacheItemInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 
 class AuthenticationService implements AuthenticationServiceInterface
 {
+    use ServiceTrait;
+
     const CACHE_KEY = 'eWh-context-cc503444-6c3a-4fb7-b492-a75f2caa63a9';
     const CACHE_TTL = 60*15;
 
@@ -44,6 +50,7 @@ class AuthenticationService implements AuthenticationServiceInterface
     /**
      * AuthenticationService constructor.
      * @param EwarehousingClientInterface $client
+     * @param SerializerInterface $serializer
      * @param string $userName
      * @param string $customerId
      * @param string $password
@@ -51,6 +58,7 @@ class AuthenticationService implements AuthenticationServiceInterface
      */
     public function __construct(
         EwarehousingClientInterface $client,
+        SerializerInterface $serializer,
         $userName,
         $customerId,
         $password,
@@ -66,31 +74,41 @@ class AuthenticationService implements AuthenticationServiceInterface
         } else {
             $this->cacheAdapter = $cacheAdapter;
         }
+        $this->serializer = $serializer;
     }
 
     public function getContext()
     {
-        $cacheItem = $this->cacheAdapter->getItem(static::CACHE_KEY);
-        if ($cacheItem->isHit()) {
-            return $cacheItem->get();
-        }
-
         $data = [
             'username' => $this->userName,
             'customer_id' => $this->customerId,
             'password' => md5($this->password),
         ];
 
-        $response = $this->client->post('2/auth', ['form_params' => $data]);
+        $guzzleResponse = $this->client->post('2/auth', ['form_params' => $data]);
+        return $this->deserializeResponse($guzzleResponse, GetContextResponse::class);
+    }
 
-        $context = $response->getBody()->getContents();
+
+    /**
+     * @return string
+     */
+    public function getHash()
+    {
+        $cacheItem = $this->cacheAdapter->getItem(static::CACHE_KEY);
+        if ($cacheItem->isHit()) {
+            return $cacheItem->get();
+        }
+
+        $context = $this->getContext();
 
         $cacheItem
             ->expiresAfter(static::CACHE_TTL)
-            ->set($context);
+            ->set($context->getContext());
 
         $this->cacheAdapter->save($cacheItem);
 
-        return $context;
+        return $context->getContext();
+
     }
 }

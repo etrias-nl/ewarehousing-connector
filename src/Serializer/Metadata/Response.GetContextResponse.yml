@@ -1,0 +1,8 @@
+Etrias\EwarehousingConnector\Response\GetContextResponse:
+  properties:
+    context:
+      type: string
+    type:
+      type: string
+    customers:
+      type: array<Etrias\EwarehousingConnector\Types\Customer>

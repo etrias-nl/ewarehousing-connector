@@ -12,14 +12,27 @@
 
 namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
+use Etrias\EwarehousingConnector\Response\GetContextResponse;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidFactory;
+
 
 /**
  * @coversNothing
  */
-class AuthenticationServiceTest extends AbstractServiceTest
+class AuthenticationServiceTest extends BaseServiceTest
 {
-    public function testGetContext()
+    public function testGetContext() {
+        $response = $this->authenticationService->getContext();
+
+        $this->assertInstanceOf(GetContextResponse::class, $response);
+    }
+
+    public function testGetHash()
     {
-        var_dump($this->authenticationService->getContext());
+        $uuidFactory = new UuidFactory();
+        $uuid = $uuidFactory->fromString($this->authenticationService->getHash());
+
+        $this->assertInstanceOf(Uuid::class, $uuid);
     }
 }
