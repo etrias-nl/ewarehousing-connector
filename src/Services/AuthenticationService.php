@@ -49,7 +49,7 @@ class AuthenticationService implements AuthenticationServiceInterface
 
     /**
      * AuthenticationService constructor.
-     * @param EwarehousingClientInterface $client
+     * @param EwarehousingClient $client
      * @param SerializerInterface $serializer
      * @param string $userName
      * @param string $customerId
@@ -57,7 +57,7 @@ class AuthenticationService implements AuthenticationServiceInterface
      * @param AdapterInterface|null $cacheAdapter
      */
     public function __construct(
-        EwarehousingClientInterface $client,
+        EwarehousingClient $client,
         SerializerInterface $serializer,
         $userName,
         $customerId,
@@ -110,5 +110,13 @@ class AuthenticationService implements AuthenticationServiceInterface
 
         return $context->getContext();
 
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserName()
+    {
+        return $this->userName;
     }
 }

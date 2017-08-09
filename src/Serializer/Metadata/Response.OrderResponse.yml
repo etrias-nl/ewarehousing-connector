@@ -1,0 +1,20 @@
+Etrias\EwarehousingConnector\Response\OrderResponse:
+  properties:
+    date:
+      type: DateTime<'Y-m-d'>
+    reference:
+      type: string
+    status:
+      type: string
+    statusCode:
+      type: string
+      serialized_name: status_code
+    deliveryAddress:
+      type: Etrias\EwarehousingConnector\Types\Address
+      serialized_name: delivery_address
+    orderLines:
+      type: array<Etrias\EwarehousingConnector\Types\OrderLine>
+      serialized_name: order_lines
+    tracking:
+      type: string
+

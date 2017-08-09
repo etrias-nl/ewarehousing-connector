@@ -18,6 +18,9 @@ interface AuthenticationServiceInterface
      */
     public function getContext();
 
+    /** @return string */
+    public function getUsername();
+
     /**
      * @return string
      */

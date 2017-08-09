@@ -1,0 +1,31 @@
+Etrias\EwarehousingConnector\Types\Address:
+  properties:
+    addressee:
+      type: string
+      serialized_name: addressed_to
+    street:
+      type: string
+    streetNumber:
+      type: string
+      serialized_name: street_number
+    numberExtension:
+      type: string
+      serialized_name: number_extension
+    zipcode:
+      type: string
+    city:
+      type: string
+    country:
+      type: string
+      serialized_name: country_code
+    contactPerson:
+      type: string
+      serialized_name: contactperson
+    phoneNumber:
+      type: string
+      serialized_name: phone_number
+    faxNumber:
+      type: string
+      serialized_name: fax_number
+    email:
+      type: string

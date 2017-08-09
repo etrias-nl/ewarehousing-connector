@@ -13,6 +13,7 @@
 namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Etrias\EwarehousingConnector\Client\ClientFactory;
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Response\GetContextResponse;
@@ -29,32 +30,33 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class BaseServiceTest extends TestCase
 {
-    /** @var  EwarehousingClientInterface */
+    /** @var  EwarehousingClient */
     protected $client;
-
-    /** @var  AuthenticationServiceInterface */
-    protected $authenticationService;
 
     /** @var  SerializerInterface */
     protected $serializer;
 
     public function setUp()
     {
-        $this->client = new EwarehousingClient([
+        $config = [
             'base_uri' => EwarehousingClientInterface::ENDPOINT_TEST
-        ]);
+        ];
+
+        $client = new EwarehousingClient($config);
 
         $this->serializer = SerializerBuilder::create()
             ->setDebug(true)
             ->addMetadataDir(__DIR__.'/../../../src/Serializer/Metadata', 'Etrias\EwarehousingConnector')
             ->build();
 
-        $this->authenticationService = new AuthenticationService(
-            $this->client,
+        $authenticationService = new AuthenticationService(
+            $client,
             $this->serializer,
             getenv('USERNAME'),
             getenv('CUSTOMERID'),
             getenv('PASSWORD')
         );
+
+        $this->client = ClientFactory::create($config, $authenticationService);
     }
 }

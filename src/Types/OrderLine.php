@@ -39,7 +39,13 @@ class OrderLine
     protected $deepUrl;
 
     /** @var  string[] */
-    protected $categories;
+    protected $categories = [];
+
+    /** @var  string[] */
+    protected $serialNumbers = [];
+
+    /** @var  string */
+    protected $statusCode;
 
     public function __construct(
         $articleCode,
@@ -235,12 +241,52 @@ class OrderLine
      * @param string[] $categories
      * @return OrderLine
      */
-    public function setCategories($categories)
+    public function setCategories(array $categories)
     {
         $this->categories = $categories;
 
         return $this;
     }
+
+    /**
+     * @return \string[]
+     */
+    public function getSerialNumbers()
+    {
+        return $this->serialNumbers;
+    }
+
+    /**
+     * @param \string[] $serialNumbers
+     * @return OrderLine
+     */
+    public function setSerialNumbers(array $serialNumbers)
+    {
+        $this->serialNumbers = $serialNumbers;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @param string $statusCode
+     * @return OrderLine
+     */
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+
 
 
 }

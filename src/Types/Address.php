@@ -33,7 +33,7 @@ class Address
     protected $street;
 
     /** @var  string */
-    protected $street_number;
+    protected $streetNumber;
 
     /** @var  string */
     protected $zipcode;
@@ -56,7 +56,7 @@ class Address
 
         $this->addressee = $addressee;
         $this->street = $street;
-        $this->street_number = $street_number;
+        $this->streetNumber = $street_number;
         $this->zipcode = $zipcode;
         $this->city = $city;
         $this->country = $country;
@@ -200,16 +200,16 @@ class Address
      */
     public function getStreetNumber()
     {
-        return $this->street_number;
+        return $this->streetNumber;
     }
 
     /**
-     * @param string $street_number
+     * @param string $streetNumber
      * @return Address
      */
-    public function setStreetNumber($street_number)
+    public function setStreetNumber($streetNumber)
     {
-        $this->street_number = $street_number;
+        $this->streetNumber = $streetNumber;
 
         return $this;
     }
