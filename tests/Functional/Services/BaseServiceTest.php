@@ -30,6 +30,8 @@ use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Adapter\RedisAdapter;
 
 
 /**
@@ -52,6 +54,8 @@ abstract class BaseServiceTest extends TestCase
         $client = new EwarehousingClient($config);
 
         $this->serializer = SerializerBuilder::create()
+            ->setCacheDir(sys_get_temp_dir().'/jms-cache')
+            ->setDebug(true)
             ->addMetadataDir(__DIR__.'/../../../src/Serializer/Metadata', 'Etrias\EwarehousingConnector')
             ->addDefaultDeserializationVisitors()
             ->addDefaultSerializationVisitors()
@@ -63,13 +67,13 @@ abstract class BaseServiceTest extends TestCase
             ->setDeserializationVisitor('array', new ArrayDeserializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy()), new DefaultAccessorStrategy()))
             ->build();
 
-
         $authenticationService = new AuthenticationService(
             $client,
             $this->serializer,
             getenv('USERNAME'),
             getenv('CUSTOMERID'),
-            getenv('PASSWORD')
+            getenv('PASSWORD'),
+            new FilesystemAdapter()
         );
 
         $this->client = ClientFactory::create($config, $authenticationService);
