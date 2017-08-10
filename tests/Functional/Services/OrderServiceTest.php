@@ -33,7 +33,7 @@ class OrderServiceTest extends BaseServiceTest
 
     public static function setUpBeforeClass()
     {
-        static::$reference = 'order_'.random_int();
+        static::$reference = 'order_'.random_int(0, PHP_INT_MAX);
     }
 
     public function setUp()

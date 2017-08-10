@@ -19,6 +19,7 @@ use Etrias\EwarehousingConnector\Serializer\ArrayDeserializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\ArraySerializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\Handler\DateHandler;
 use Etrias\EwarehousingConnector\Services\AuthenticationService;
+use GuzzleHttp\Middleware;
 use JMS\Serializer\Accessor\DefaultAccessorStrategy;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
