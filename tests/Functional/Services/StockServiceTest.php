@@ -50,8 +50,8 @@ class StockServiceTest extends BaseServiceTest
     public function testCreateStock()
     {
         $products = [
-            new StockProduct('testStock'.random_int(0, PHP_INT_MAX), 'test'.random_int()),
-            new StockProduct('testStock'.random_int(0, PHP_INT_MAX), 'test'.random_int()),
+            new StockProduct('testStock'.random_int(0, PHP_INT_MAX), 'test'.random_int(0, PHP_INT_MAX)),
+            new StockProduct('testStock'.random_int(0, PHP_INT_MAX), 'test'.random_int(0, PHP_INT_MAX)),
         ];
 
         $response = $this->service->createStock($products);
