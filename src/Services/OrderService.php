@@ -13,6 +13,7 @@ use DateTime;
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Exceptions\OrderNotFoundException;
+use Etrias\EwarehousingConnector\Response\GetTrackingCodeResponse;
 use Etrias\EwarehousingConnector\Response\OrderResponse;
 use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
@@ -49,13 +50,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @param DateTime $from
-     * @param DateTime $to
-     * @param int $page
-     * @param string|null $status
-     * @param string|null $sort
-     * @param string|null $direction
-     * @return OrderResponse[]
+     * @inheritdoc
      */
     public function getListing(
         DateTime $from,
@@ -80,8 +75,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @param string $reference
-     * @return OrderResponse
+     * @inheritdoc
      */
     public function getOrder($reference)
     {
@@ -90,6 +84,9 @@ class OrderService implements OrderServiceInterface
         return $this->deserializeResponse($guzzleResponse, OrderResponse::class);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function addOrder(Order $order) {
         $json = $this->serializer->serialize($order, 'json');
         $guzzleResponse = $this->client->post('/3/orders/create', [RequestOptions::FORM_PARAMS => json_decode($json, true)]);
@@ -98,11 +95,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @param $reference
-     * @param DateTime $date
-     * @param Address|null $address
-     * @param array|null $orderLines
-     * @return SuccessResponse
+     * @inheritdoc
      */
     public function updateOrder(
         $reference,
@@ -123,9 +116,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @param string $reference
-     * @param OrderLine[] $orderLines
-     * @return SuccessResponse
+     * @inheritdoc
      */
     public function cancelOrder(
         $reference,
@@ -141,7 +132,12 @@ class OrderService implements OrderServiceInterface
         return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
 
-    public function getTrackingCode($reference) {
-        //TODO
+    /**
+     * @inheritdoc
+     */
+    public function getTrackingCode(array $references) {
+        $guzzleResponse = $this->client->get('5/orders/tracking', [RequestOptions::QUERY => ['reference' => $references]]);
+
+        return $this->deserializeResponse($guzzleResponse, 'array<string, '.GetTrackingCodeResponse::class.'>');
     }
 }

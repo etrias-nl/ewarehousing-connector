@@ -82,4 +82,11 @@ class OrderServiceTest extends BaseServiceTest
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
+    public function testGetTrackingCode()
+    {
+        $response = $this->service->getTrackingCode([static::$reference]);
+
+        $this->assertTrue(is_array($response));
+    }
+
 }

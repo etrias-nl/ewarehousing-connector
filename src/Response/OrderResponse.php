@@ -30,7 +30,7 @@ class OrderResponse
     protected $deliveryAddress;
 
     /** @var  OrderLine[] */
-    protected $orderLines;
+    protected $orderLines = [];
 
     /** @var  string */
     protected $tracking;

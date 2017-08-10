@@ -1,0 +1,10 @@
+Etrias\EwarehousingConnector\Types\Label:
+  properties:
+    trackingCode:
+      type: string
+      serialized_name: tracking_code
+    trackingUrl:
+      type: string
+      serialized_name: tracking_url
+    shipper:
+      type: string

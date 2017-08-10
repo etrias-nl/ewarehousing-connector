@@ -58,7 +58,7 @@ interface OrderServiceInterface
     public function cancelOrder($reference, array $orderLines = []);
 
     /**
-     * @param string $reference
+     * @param string[] $references
      */
-    public function getTrackingCode($reference);
+    public function getTrackingCode(array $references);
 }

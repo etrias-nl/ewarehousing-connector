@@ -28,7 +28,7 @@ class Order
     /**
      * @var OrderLine[]
      */
-    protected $orderLines;
+    protected $orderLines = [];
 
     public function __construct (
         $reference,

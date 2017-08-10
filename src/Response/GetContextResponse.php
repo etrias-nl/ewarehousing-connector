@@ -19,7 +19,7 @@ class GetContextResponse
     protected $context;
 
     /** @var Customer[] */
-    protected $customers;
+    protected $customers = [];
 
     /** @var  string */
     protected $type;
