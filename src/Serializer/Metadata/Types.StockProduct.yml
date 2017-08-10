@@ -1,0 +1,25 @@
+Etrias\EwarehousingConnector\Types\StockProduct:
+  properties:
+    sku:
+      type: string
+    ean:
+      type: string
+    descripton:
+      type: string
+    articleCode:
+      type: string
+      serialized_name: article_code
+    width:
+      type: integer
+    height:
+      type: integer
+    depth:
+      type: integer
+    weight:
+      type: integer
+    extra:
+      type: boolean
+      serialized_name: is_extra
+    packingSlipVisible:
+      type: boolean
+      serialized_name: packing_slip_visible

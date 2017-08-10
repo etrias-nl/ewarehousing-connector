@@ -1,0 +1,23 @@
+Etrias\EwarehousingConnector\Types\ShopInformation:
+  properties:
+    description:
+      type: string
+    minStock:
+      type: float
+      serialized_name: min_stock
+    margin:
+      type: float
+    imageUrl:
+      type: string
+      serialized_name: image_url
+    title:
+      type: string
+    seoTitle:
+      type: string
+      serialized_name: seo_title
+    seoDescription:
+      type: string
+      serialized_name: seo_description
+    deepUrl:
+      type: string
+      serialized_name: deep_url

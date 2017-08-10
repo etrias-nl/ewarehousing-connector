@@ -9,6 +9,7 @@
 namespace Etrias\EwarehousingConnector\Services;
 
 use DateTime;
+use Etrias\EwarehousingConnector\Response\StockResponse;
 use Etrias\EwarehousingConnector\Types\StockProduct;
 
 interface StockServiceInterface
@@ -21,6 +22,7 @@ interface StockServiceInterface
      * @param int $limit
      * @param null $sort
      * @param null $direction
+     * @return StockResponse[]
      */
     public function getListing(
         $articleCode = null,

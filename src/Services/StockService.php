@@ -10,14 +10,42 @@ namespace Etrias\EwarehousingConnector\Services;
 
 
 use DateTime;
+use Etrias\EwarehousingConnector\Client\EwarehousingClient;
+use Etrias\EwarehousingConnector\Response\StockResponse;
+use Etrias\EwarehousingConnector\Response\SuccessResponse;
+use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
 use Etrias\EwarehousingConnector\Types\Address;
 use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\Order;
 use Etrias\EwarehousingConnector\Types\OrderLine;
 use Etrias\EwarehousingConnector\Types\StockProduct;
+use GuzzleHttp\RequestOptions;
+use JMS\Serializer\SerializerInterface;
 
 class StockService implements StockServiceInterface
 {
+    use ServiceTrait;
+
+    /** @var EwarehousingClient */
+    protected $client;
+
+    /** @var SerializerInterface */
+    protected $serializer;
+
+    /**
+     * OrderService constructor.
+     * @param EwarehousingClient $client
+     * @param SerializerInterface $serializer
+     */
+    public function __construct(EwarehousingClient $client, SerializerInterface $serializer)
+    {
+        $this->client = $client;
+        $this->serializer = $serializer;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getListing(
         $articleCode = null,
         $articleDescription = null,
@@ -27,16 +55,48 @@ class StockService implements StockServiceInterface
         $sort = null,
         $direction = null
     ) {
-        //TODO
+
+        $data = [
+            'article_code' => $articleCode,
+            'article_description' => $articleDescription,
+            'updated_after' => $updatedAfter ? $updatedAfter->format('Y-m-d') : null,
+            'page' => $page,
+            'sort' => $sort,
+            'direction' => $direction,
+            'limit' => $limit
+        ];
+
+        $guzzleResponse = $this->client->get('3/stock', [RequestOptions::QUERY => $data]);
+        return $this->deserializeResponse($guzzleResponse, 'array<'.StockResponse::class.'>');
+
     }
 
+    /**
+     * @inheritdoc
+     */
     public function updateStock($articleCode, $minStock, $margin)
     {
-        //TODO
+        $data = [
+            'article_code' => $articleCode,
+            'min_stock' => $minStock,
+            'margin' => $margin
+        ];
+
+        $guzzleResponse = $this->client->post('2/stock/update', [RequestOptions::FORM_PARAMS => $data]);
+        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function createStock(array $products = [])
     {
-        //TODO
+        $data = [
+            'products' => $this->serializer->serialize($products, 'array')
+        ];
+
+
+        $guzzleResponse = $this->client->post('2/stock/create', [RequestOptions::FORM_PARAMS => $data]);
+        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
 }

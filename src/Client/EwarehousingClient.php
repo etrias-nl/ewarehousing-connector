@@ -23,7 +23,16 @@ class EwarehousingClient extends Client implements EwarehousingClientInterface
         } catch (ClientException $e) {
             $response = json_decode($e->getResponse()->getBody()->getContents(), true);
 
-            throw new BadRequestException($response['error'], null, $e);
+            if (is_array($response['error'])) {
+                $exception = new BadRequestException('multiple exceptions see childs', null, $e);
+                foreach ($response['error'] as $error) {
+                    $exception->addChild(new BadRequestException(json_encode($error), null, $e));
+                }
+            } else {
+                $exception = new BadRequestException($response['error'], null, $e);
+            }
+
+            throw $exception;
         }
     }
 

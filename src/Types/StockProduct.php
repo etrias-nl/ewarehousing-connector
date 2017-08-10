@@ -30,7 +30,7 @@ class StockProduct
     protected $weight;
 
     /** @var  bool */
-    protected $isExtra;
+    protected $extra;
 
     /** @var  bool */
     protected $packingSlipVisible;
@@ -176,16 +176,16 @@ class StockProduct
      */
     public function isExtra()
     {
-        return $this->isExtra;
+        return $this->extra;
     }
 
     /**
-     * @param bool $isExtra
+     * @param bool $extra
      * @return StockProduct
      */
-    public function setIsExtra($isExtra)
+    public function setExtra($extra)
     {
-        $this->isExtra = $isExtra;
+        $this->extra = $extra;
 
         return $this;
     }

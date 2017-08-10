@@ -1,0 +1,38 @@
+Etrias\EwarehousingConnector\Response\StockResponse:
+  properties:
+    customerId:
+      type: integer
+      serialized_name: customer_id
+    articleCode:
+      type: string
+      serialized_name: article_code
+    description:
+      type: string
+    fysicalStock:
+      type: float
+      serialized_name: fysical_stock
+    salableStock:
+      type: float
+      serialized_name: salable_stock
+    availableStock:
+      type: float
+      serialized_name: available_stock
+    skuUnit:
+      type: string
+      serialized_name: sku_unit
+    netWeight:
+      type: float
+      serialized_name: netto_weight
+    grossWeight:
+      type: float
+      serialized_name: gros_weight
+    updatedAt:
+      type: DateTime<'Y-m-d H:i:s'>
+      serialized_name: updated_at
+    statuses:
+      type: array<string>
+      serialized_name: statusses
+    shopInformation:
+      type: Etrias\EwarehousingConnector\Types\ShopInformation
+      serialized_name: shop_information
+
