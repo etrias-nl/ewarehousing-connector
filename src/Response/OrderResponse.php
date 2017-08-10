@@ -1,9 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 9-8-17
- * Time: 9:18
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Response;
@@ -14,25 +18,25 @@ use Etrias\EwarehousingConnector\Types\OrderLine;
 
 class OrderResponse
 {
-    /** @var  string */
+    /** @var string */
     protected $reference;
 
-    /** @var  DateTime */
+    /** @var DateTime */
     protected $date;
 
-    /** @var  string */
+    /** @var string */
     protected $shipped;
 
-    /** @var  string */
+    /** @var string */
     protected $statusCode;
 
-    /** @var  Address */
+    /** @var Address */
     protected $deliveryAddress;
 
-    /** @var  OrderLine[] */
+    /** @var OrderLine[] */
     protected $orderLines = [];
 
-    /** @var  string */
+    /** @var string */
     protected $tracking;
 
     /**
@@ -45,6 +49,7 @@ class OrderResponse
 
     /**
      * @param string $reference
+     *
      * @return OrderResponse
      */
     public function setReference($reference)
@@ -64,6 +69,7 @@ class OrderResponse
 
     /**
      * @param DateTime $date
+     *
      * @return OrderResponse
      */
     public function setDate($date)
@@ -83,6 +89,7 @@ class OrderResponse
 
     /**
      * @param string $shipped
+     *
      * @return OrderResponse
      */
     public function setShipped($shipped)
@@ -102,6 +109,7 @@ class OrderResponse
 
     /**
      * @param string $statusCode
+     *
      * @return OrderResponse
      */
     public function setStatusCode($statusCode)
@@ -121,6 +129,7 @@ class OrderResponse
 
     /**
      * @param Address $deliveryAddress
+     *
      * @return OrderResponse
      */
     public function setDeliveryAddress($deliveryAddress)
@@ -140,6 +149,7 @@ class OrderResponse
 
     /**
      * @param OrderLine[] $orderLines
+     *
      * @return OrderResponse
      */
     public function setOrderLines($orderLines)
@@ -159,6 +169,7 @@ class OrderResponse
 
     /**
      * @param string $tracking
+     *
      * @return OrderResponse
      */
     public function setTracking($tracking)
@@ -167,6 +178,4 @@ class OrderResponse
 
         return $this;
     }
-
-
 }

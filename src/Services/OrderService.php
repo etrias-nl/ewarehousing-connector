@@ -1,27 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:03
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Services;
 
-
 use DateTime;
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
-use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
-use Etrias\EwarehousingConnector\Exceptions\OrderNotFoundException;
 use Etrias\EwarehousingConnector\Response\GetTrackingCodeResponse;
 use Etrias\EwarehousingConnector\Response\OrderResponse;
 use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
 use Etrias\EwarehousingConnector\Types\Address;
-use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\Order;
-use Etrias\EwarehousingConnector\Types\OrderLine;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use JMS\Serializer\SerializerInterface;
 
@@ -40,7 +38,8 @@ class OrderService implements OrderServiceInterface
 
     /**
      * OrderService constructor.
-     * @param EwarehousingClient $client
+     *
+     * @param EwarehousingClient  $client
      * @param SerializerInterface $serializer
      */
     public function __construct(EwarehousingClient $client, SerializerInterface $serializer)
@@ -50,7 +49,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getListing(
         DateTime $from,
@@ -59,23 +58,23 @@ class OrderService implements OrderServiceInterface
         $status = null,
         $sort = null,
         $direction = null
-    )
-    {
+    ) {
         $data = [
             'from' => $from->format('Y-m-d'),
             'to' => $to->format('Y-m-d'),
             'page' => $page,
             'status' => $status,
             'sort' => $sort,
-            'direction' => $direction
+            'direction' => $direction,
         ];
 
         $guzzleResponse = $this->client->get('3/orders', [RequestOptions::QUERY => $data]);
+
         return $this->deserializeResponse($guzzleResponse, 'array<'.OrderResponse::class.'>');
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getOrder($reference)
     {
@@ -85,9 +84,10 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function addOrder(Order $order) {
+    public function addOrder(Order $order)
+    {
         $json = $this->serializer->serialize($order, 'json');
         $guzzleResponse = $this->client->post('/3/orders/create', [RequestOptions::FORM_PARAMS => json_decode($json, true)]);
 
@@ -95,7 +95,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function updateOrder(
         $reference,
@@ -107,7 +107,7 @@ class OrderService implements OrderServiceInterface
             'reference' => $reference,
             'date' => $date->format('Y-m-d'),
             'address' => $this->serializer->serialize($address, 'array'),
-            'order_lines' => $this->serializer->serialize($orderLines, 'array')
+            'order_lines' => $this->serializer->serialize($orderLines, 'array'),
         ];
 
         $guzzleResponse = $this->client->post('/1/orders/update', [RequestOptions::FORM_PARAMS => $data]);
@@ -116,15 +116,14 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function cancelOrder(
         $reference,
         array $orderLines = []
     ) {
-
         $data = [
-            'order_lines'=> $this->serializer->serialize($orderLines, 'array')
+            'order_lines' => $this->serializer->serialize($orderLines, 'array'),
         ];
 
         $guzzleResponse = $this->client->post('/1/orders/cancel/'.$reference, [RequestOptions::FORM_PARAMS => $data]);
@@ -133,9 +132,10 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function getTrackingCode(array $references) {
+    public function getTrackingCode(array $references)
+    {
         $guzzleResponse = $this->client->get('5/orders/tracking', [RequestOptions::QUERY => ['reference' => $references]]);
 
         return $this->deserializeResponse($guzzleResponse, 'array<string, '.GetTrackingCodeResponse::class.'>');

@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
-
 
 class InboundResponseLine
 {
@@ -24,10 +27,10 @@ class InboundResponseLine
      */
     protected $variant;
 
-    /** @var  float */
+    /** @var float */
     protected $quantity;
 
-    /** @var  string */
+    /** @var string */
     protected $skuUnit;
 
     /**
@@ -40,6 +43,7 @@ class InboundResponseLine
 
     /**
      * @param string $itemId
+     *
      * @return InboundResponseLine
      */
     public function setItemId($itemId)
@@ -59,6 +63,7 @@ class InboundResponseLine
 
     /**
      * @param string $articleCode
+     *
      * @return InboundResponseLine
      */
     public function setArticleCode($articleCode)
@@ -78,6 +83,7 @@ class InboundResponseLine
 
     /**
      * @param string $variant
+     *
      * @return InboundResponseLine
      */
     public function setVariant($variant)
@@ -97,6 +103,7 @@ class InboundResponseLine
 
     /**
      * @param float $quantity
+     *
      * @return InboundResponseLine
      */
     public function setQuantity($quantity)
@@ -116,6 +123,7 @@ class InboundResponseLine
 
     /**
      * @param string $skuUnit
+     *
      * @return InboundResponseLine
      */
     public function setSkuUnit($skuUnit)
@@ -124,7 +132,4 @@ class InboundResponseLine
 
         return $this;
     }
-
-
-
 }

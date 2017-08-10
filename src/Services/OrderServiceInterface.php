@@ -1,9 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 15:21
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Services;
@@ -17,9 +21,9 @@ use Etrias\EwarehousingConnector\Types\OrderLine;
 interface OrderServiceInterface
 {
     /**
-     * @param DateTime $from
-     * @param DateTime $to
-     * @param int $page
+     * @param DateTime    $from
+     * @param DateTime    $to
+     * @param int         $page
      * @param string|null $status
      * @param string|null $sort
      * @param string|null $direction
@@ -45,14 +49,14 @@ interface OrderServiceInterface
 
     /**
      * @param $reference
-     * @param DateTime $date
+     * @param DateTime     $date
      * @param Address|null $address
-     * @param OrderLine[] $orderLines
+     * @param OrderLine[]  $orderLines
      */
     public function updateOrder($reference, DateTime $date, Address $address = null, array $orderLines = null);
 
     /**
-     * @param string $reference
+     * @param string            $reference
      * @param CancelOrderLine[] $orderLines
      */
     public function cancelOrder($reference, array $orderLines = []);

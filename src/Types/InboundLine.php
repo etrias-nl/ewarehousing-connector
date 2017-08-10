@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
-
 
 use DateTime;
 
@@ -28,9 +31,10 @@ class InboundLine
 
     /**
      * InboundLine constructor.
-     * @param string $articleCode
+     *
+     * @param string   $articleCode
      * @param DateTime $date
-     * @param int $quantity
+     * @param int      $quantity
      */
     public function __construct($articleCode, DateTime $date, $quantity)
     {
@@ -49,6 +53,7 @@ class InboundLine
 
     /**
      * @param string $articleCode
+     *
      * @return InboundLine
      */
     public function setArticleCode($articleCode)
@@ -65,11 +70,13 @@ class InboundLine
     {
         var_dump('blaat');
         die($this->date);
+
         return $this->date;
     }
 
     /**
      * @param DateTime $date
+     *
      * @return InboundLine
      */
     public function setDate($date)
@@ -89,6 +96,7 @@ class InboundLine
 
     /**
      * @param int $quantity
+     *
      * @return InboundLine
      */
     public function setQuantity($quantity)
@@ -97,6 +105,4 @@ class InboundLine
 
         return $this;
     }
-
-
 }

@@ -12,27 +12,20 @@
 
 namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
-use DateTime;
-use Etrias\EwarehousingConnector\Response\OrderResponse;
 use Etrias\EwarehousingConnector\Response\StockResponse;
 use Etrias\EwarehousingConnector\Response\SuccessResponse;
-use Etrias\EwarehousingConnector\Services\OrderService;
 use Etrias\EwarehousingConnector\Services\StockService;
-use Etrias\EwarehousingConnector\Types\Address;
-use Etrias\EwarehousingConnector\Types\CancelOrderLine;
-use Etrias\EwarehousingConnector\Types\Order;
-use Etrias\EwarehousingConnector\Types\OrderLine;
 use Etrias\EwarehousingConnector\Types\StockProduct;
 
-
+/**
+ * @coversNothing
+ */
 class StockServiceTest extends BaseServiceTest
 {
-
-    /** @var  StockService */
+    /** @var StockService */
     protected $service;
 
     protected static $reference;
-
 
     public function setUp()
     {
@@ -44,25 +37,24 @@ class StockServiceTest extends BaseServiceTest
     {
         $response = $this->service->getListing();
 
-        $this->assertTrue(is_array($response));
+        $this->assertInternalType('array', $response);
         $this->assertInstanceOf(StockResponse::class, reset($response));
     }
 
     public function testUpdateStock()
     {
-        $response = $this->service->updateStock('190325090616', 99,45);
+        $response = $this->service->updateStock('190325090616', 99, 45);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
     public function testCreateStock()
     {
         $products = [
-            new StockProduct('testStock'.rand(), 'test'.rand()),
-            new StockProduct('testStock'.rand(), 'test'.rand())
+            new StockProduct('testStock'.random_int(), 'test'.random_int()),
+            new StockProduct('testStock'.random_int(), 'test'.random_int()),
         ];
 
         $response = $this->service->createStock($products);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
-
 }

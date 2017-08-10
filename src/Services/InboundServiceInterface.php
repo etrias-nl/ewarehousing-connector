@@ -1,9 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 15:21
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Services;
@@ -16,9 +20,9 @@ interface InboundServiceInterface
     /**
      * @param DateTime $from
      * @param DateTime $to
-     * @param int $page
-     * @param null $sort
-     * @param null $direction
+     * @param int      $page
+     * @param null     $sort
+     * @param null     $direction
      */
     public function getListing(DateTime $from, DateTime $to, $page = 1, $sort = null, $direction = null);
 

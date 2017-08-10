@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Etrias\EwarehousingConnector\Serializer;
 
 use JMS\Serializer\Context;
@@ -15,10 +25,12 @@ class ArraySerializationVisitor extends GenericSerializationVisitor
     {
         return $this->getRoot();
     }
+
     /**
-     * @param array $data
-     * @param array $type
+     * @param array   $data
+     * @param array   $type
      * @param Context $context
+     *
      * @return array|\ArrayObject|mixed
      */
     public function visitArray($data, array $type, Context $context)
@@ -29,13 +41,16 @@ class ArraySerializationVisitor extends GenericSerializationVisitor
             // serialized to { } while a mere array would be serialized to [].
             return new \ArrayObject();
         }
+
         return $result;
     }
+
     /**
      * @param ClassMetadata $metadata
-     * @param mixed $data
-     * @param array $type
-     * @param Context $context
+     * @param mixed         $data
+     * @param array         $type
+     * @param Context       $context
+     *
      * @return \ArrayObject
      */
     public function endVisitingObject(ClassMetadata $metadata, $data, array $type, Context $context)
@@ -44,10 +59,11 @@ class ArraySerializationVisitor extends GenericSerializationVisitor
         // Force JSON output to "{}" instead of "[]" if it contains either no properties or all properties are null.
         if (empty($rs)) {
             $rs = new \ArrayObject();
-            if (array() === $this->getRoot()) {
+            if ([] === $this->getRoot()) {
                 $this->setRoot(clone $rs);
             }
         }
+
         return $rs;
     }
 }

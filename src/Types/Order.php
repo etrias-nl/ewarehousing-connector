@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
-
 
 use DateTime;
 
@@ -30,13 +33,12 @@ class Order
      */
     protected $orderLines = [];
 
-    public function __construct (
+    public function __construct(
         $reference,
         DateTime $date,
         Address $address,
         array $orderLines
-    )
-    {
+    ) {
         $this->reference = $reference;
         $this->date = $date;
         $this->address = $address;
@@ -53,6 +55,7 @@ class Order
 
     /**
      * @param string $reference
+     *
      * @return Order
      */
     public function setReference($reference)
@@ -72,6 +75,7 @@ class Order
 
     /**
      * @param DateTime $date
+     *
      * @return Order
      */
     public function setDate($date)
@@ -91,6 +95,7 @@ class Order
 
     /**
      * @param Address $address
+     *
      * @return Order
      */
     public function setAddress($address)
@@ -110,6 +115,7 @@ class Order
 
     /**
      * @param OrderLine[] $orderLines
+     *
      * @return Order
      */
     public function setOrderLines($orderLines)
@@ -118,5 +124,4 @@ class Order
 
         return $this;
     }
-
 }

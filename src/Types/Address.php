@@ -1,47 +1,50 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:23
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
 
-
 class Address
 {
-    /** @var  string */
+    /** @var string */
     protected $numberExtension;
 
-    /** @var  string */
+    /** @var string */
     protected $contactPerson;
 
-    /** @var  string */
+    /** @var string */
     protected $phoneNumber;
 
-    /** @var  string */
+    /** @var string */
     protected $faxNumber;
 
-    /** @var  string */
+    /** @var string */
     protected $email;
 
-    /** @var  string */
+    /** @var string */
     protected $addressee;
 
-    /** @var  string */
+    /** @var string */
     protected $street;
 
-    /** @var  string */
+    /** @var string */
     protected $streetNumber;
 
-    /** @var  string */
+    /** @var string */
     protected $zipcode;
 
-    /** @var  string */
+    /** @var string */
     protected $city;
 
-    /** @var  string e.g. NL, EN */
+    /** @var string e.g. NL, EN */
     protected $country;
 
     public function __construct(
@@ -51,9 +54,7 @@ class Address
         $zipcode,
         $city,
         $country
-    )
-    {
-
+    ) {
         $this->addressee = $addressee;
         $this->street = $street;
         $this->streetNumber = $street_number;
@@ -72,6 +73,7 @@ class Address
 
     /**
      * @param string $numberExtension
+     *
      * @return Address
      */
     public function setNumberExtension($numberExtension)
@@ -91,6 +93,7 @@ class Address
 
     /**
      * @param string $contactPerson
+     *
      * @return Address
      */
     public function setContactPerson($contactPerson)
@@ -110,6 +113,7 @@ class Address
 
     /**
      * @param string $phoneNumber
+     *
      * @return Address
      */
     public function setPhoneNumber($phoneNumber)
@@ -129,6 +133,7 @@ class Address
 
     /**
      * @param string $faxNumber
+     *
      * @return Address
      */
     public function setFaxNumber($faxNumber)
@@ -148,6 +153,7 @@ class Address
 
     /**
      * @param string $email
+     *
      * @return Address
      */
     public function setEmail($email)
@@ -167,6 +173,7 @@ class Address
 
     /**
      * @param string $addressee
+     *
      * @return Address
      */
     public function setAddressee($addressee)
@@ -186,6 +193,7 @@ class Address
 
     /**
      * @param string $street
+     *
      * @return Address
      */
     public function setStreet($street)
@@ -205,6 +213,7 @@ class Address
 
     /**
      * @param string $streetNumber
+     *
      * @return Address
      */
     public function setStreetNumber($streetNumber)
@@ -224,6 +233,7 @@ class Address
 
     /**
      * @param string $zipcode
+     *
      * @return Address
      */
     public function setZipcode($zipcode)
@@ -243,6 +253,7 @@ class Address
 
     /**
      * @param string $city
+     *
      * @return Address
      */
     public function setCity($city)
@@ -262,6 +273,7 @@ class Address
 
     /**
      * @param string $country
+     *
      * @return Address
      */
     public function setCountry($country)
@@ -270,6 +282,4 @@ class Address
 
         return $this;
     }
-
-
 }

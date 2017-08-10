@@ -1,38 +1,41 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
 
-
 class ShopInformation
 {
-    /** @var  string */
+    /** @var string */
     protected $description;
 
-    /** @var  float */
+    /** @var float */
     protected $minStock;
 
-    /** @var  float */
+    /** @var float */
     protected $margin;
 
-    /** @var  string */
+    /** @var string */
     protected $imageUrl;
 
-    /** @var  string */
+    /** @var string */
     protected $title;
 
-    /** @var  string */
+    /** @var string */
     protected $seoTitle;
 
-    /** @var  string */
+    /** @var string */
     protected $seoDescription;
 
-    /** @var  string */
+    /** @var string */
     protected $deepUrl;
 
     /**
@@ -45,6 +48,7 @@ class ShopInformation
 
     /**
      * @param string $description
+     *
      * @return ShopInformation
      */
     public function setDescription($description)
@@ -64,6 +68,7 @@ class ShopInformation
 
     /**
      * @param float $minStock
+     *
      * @return ShopInformation
      */
     public function setMinStock($minStock)
@@ -83,6 +88,7 @@ class ShopInformation
 
     /**
      * @param float $margin
+     *
      * @return ShopInformation
      */
     public function setMargin($margin)
@@ -102,6 +108,7 @@ class ShopInformation
 
     /**
      * @param string $imageUrl
+     *
      * @return ShopInformation
      */
     public function setImageUrl($imageUrl)
@@ -121,6 +128,7 @@ class ShopInformation
 
     /**
      * @param string $title
+     *
      * @return ShopInformation
      */
     public function setTitle($title)
@@ -140,6 +148,7 @@ class ShopInformation
 
     /**
      * @param string $seoTitle
+     *
      * @return ShopInformation
      */
     public function setSeoTitle($seoTitle)
@@ -159,6 +168,7 @@ class ShopInformation
 
     /**
      * @param string $seoDescription
+     *
      * @return ShopInformation
      */
     public function setSeoDescription($seoDescription)
@@ -178,6 +188,7 @@ class ShopInformation
 
     /**
      * @param string $deepUrl
+     *
      * @return ShopInformation
      */
     public function setDeepUrl($deepUrl)
@@ -186,6 +197,4 @@ class ShopInformation
 
         return $this;
     }
-
-
 }

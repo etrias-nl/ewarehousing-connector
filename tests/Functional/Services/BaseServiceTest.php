@@ -12,17 +12,13 @@
 
 namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Etrias\EwarehousingConnector\Client\ClientFactory;
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
-use Etrias\EwarehousingConnector\Response\GetContextResponse;
 use Etrias\EwarehousingConnector\Serializer\ArrayDeserializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\ArraySerializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\Handler\DateHandler;
 use Etrias\EwarehousingConnector\Services\AuthenticationService;
-use Etrias\EwarehousingConnector\Services\AuthenticationServiceInterface;
-use Etrias\EwarehousingConnector\Types\Customer;
 use JMS\Serializer\Accessor\DefaultAccessorStrategy;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
@@ -31,24 +27,22 @@ use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Cache\Adapter\RedisAdapter;
-
 
 /**
  * @coversNothing
  */
 abstract class BaseServiceTest extends TestCase
 {
-    /** @var  EwarehousingClient */
+    /** @var EwarehousingClient */
     protected $client;
 
-    /** @var  SerializerInterface */
+    /** @var SerializerInterface */
     protected $serializer;
 
     public function setUp()
     {
         $config = [
-            'base_uri' => EwarehousingClientInterface::ENDPOINT_TEST
+            'base_uri' => EwarehousingClientInterface::ENDPOINT_TEST,
         ];
 
         $client = new EwarehousingClient($config);

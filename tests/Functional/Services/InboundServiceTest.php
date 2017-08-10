@@ -14,28 +14,19 @@ namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
 use DateTime;
 use Etrias\EwarehousingConnector\Response\InboundResponse;
-use Etrias\EwarehousingConnector\Response\OrderResponse;
-use Etrias\EwarehousingConnector\Response\StockResponse;
 use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Services\InboundService;
-use Etrias\EwarehousingConnector\Services\OrderService;
-use Etrias\EwarehousingConnector\Services\StockService;
-use Etrias\EwarehousingConnector\Types\Address;
-use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\InboundLine;
-use Etrias\EwarehousingConnector\Types\Order;
-use Etrias\EwarehousingConnector\Types\OrderLine;
-use Etrias\EwarehousingConnector\Types\StockProduct;
 
-
+/**
+ * @coversNothing
+ */
 class InboundServiceTest extends BaseServiceTest
 {
-
-    /** @var  InboundService */
+    /** @var InboundService */
     protected $service;
 
     protected static $reference;
-
 
     public function setUp()
     {
@@ -46,7 +37,7 @@ class InboundServiceTest extends BaseServiceTest
     public function testCreateInbound()
     {
         $response = $this->service->createInbound('order_844078270', [
-            new InboundLine('TESTcode', new DateTime('yesterday'), 2)
+            new InboundLine('TESTcode', new DateTime('yesterday'), 2),
         ]);
 
         $this->assertInstanceOf(SuccessResponse::class, $response);
@@ -56,7 +47,7 @@ class InboundServiceTest extends BaseServiceTest
     {
         $response = $this->service->getListing();
 
-        $this->assertTrue(is_array($response));
+        $this->assertInternalType('array', $response);
         $this->assertInstanceOf(InboundResponse::class, reset($response));
     }
 }

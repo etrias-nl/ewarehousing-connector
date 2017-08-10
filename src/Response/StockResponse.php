@@ -1,9 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 9-8-17
- * Time: 9:18
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Response;
@@ -13,40 +17,40 @@ use Etrias\EwarehousingConnector\Types\ShopInformation;
 
 class StockResponse
 {
-    /** @var  integer */
+    /** @var int */
     protected $customerId;
 
-    /** @var  string */
+    /** @var string */
     protected $articleCode;
 
-    /** @var  string */
+    /** @var string */
     protected $description;
 
-    /** @var  float */
+    /** @var float */
     protected $fysicalStock;
 
-    /** @var  float */
+    /** @var float */
     protected $salableStock;
 
-    /** @var  float */
+    /** @var float */
     protected $availableStock;
 
-    /** @var  string */
+    /** @var string */
     protected $skuUnit;
 
-    /** @var  float */
+    /** @var float */
     protected $netWeight;
 
-    /** @var  float */
+    /** @var float */
     protected $grossWeight;
 
-    /** @var  DateTime */
+    /** @var DateTime */
     protected $updatedAt;
 
-    /** @var  string[] */
+    /** @var string[] */
     protected $statuses;
 
-    /** @var  ShopInformation */
+    /** @var ShopInformation */
     protected $shopInformation;
 
     /**
@@ -59,6 +63,7 @@ class StockResponse
 
     /**
      * @param int $customerId
+     *
      * @return StockResponse
      */
     public function setCustomerId($customerId)
@@ -78,6 +83,7 @@ class StockResponse
 
     /**
      * @param string $articleCode
+     *
      * @return StockResponse
      */
     public function setArticleCode($articleCode)
@@ -97,6 +103,7 @@ class StockResponse
 
     /**
      * @param string $description
+     *
      * @return StockResponse
      */
     public function setDescription($description)
@@ -116,6 +123,7 @@ class StockResponse
 
     /**
      * @param float $fysicalStock
+     *
      * @return StockResponse
      */
     public function setFysicalStock($fysicalStock)
@@ -135,6 +143,7 @@ class StockResponse
 
     /**
      * @param float $salableStock
+     *
      * @return StockResponse
      */
     public function setSalableStock($salableStock)
@@ -154,6 +163,7 @@ class StockResponse
 
     /**
      * @param float $availableStock
+     *
      * @return StockResponse
      */
     public function setAvailableStock($availableStock)
@@ -173,6 +183,7 @@ class StockResponse
 
     /**
      * @param string $skuUnit
+     *
      * @return StockResponse
      */
     public function setSkuUnit($skuUnit)
@@ -192,6 +203,7 @@ class StockResponse
 
     /**
      * @param float $netWeight
+     *
      * @return StockResponse
      */
     public function setNetWeight($netWeight)
@@ -211,6 +223,7 @@ class StockResponse
 
     /**
      * @param float $grossWeight
+     *
      * @return StockResponse
      */
     public function setGrossWeight($grossWeight)
@@ -230,6 +243,7 @@ class StockResponse
 
     /**
      * @param DateTime $updatedAt
+     *
      * @return StockResponse
      */
     public function setUpdatedAt($updatedAt)
@@ -249,6 +263,7 @@ class StockResponse
 
     /**
      * @param \string[] $statuses
+     *
      * @return StockResponse
      */
     public function setStatuses($statuses)
@@ -268,6 +283,7 @@ class StockResponse
 
     /**
      * @param ShopInformation $shopInformation
+     *
      * @return StockResponse
      */
     public function setShopInformation($shopInformation)
@@ -276,7 +292,4 @@ class StockResponse
 
         return $this;
     }
-
-
-
 }

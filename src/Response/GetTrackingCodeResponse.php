@@ -1,34 +1,37 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 9-8-17
- * Time: 9:18
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Response;
-
 
 use Etrias\EwarehousingConnector\Types\Label;
 
 class GetTrackingCodeResponse
 {
-    /** @var  string */
+    /** @var string */
     protected $orderReference;
 
-    /** @var  bool */
+    /** @var bool */
     protected $sent;
 
-    /** @var  string */
+    /** @var string */
     protected $zipcode;
 
-    /** @var  Label[] */
+    /** @var Label[] */
     protected $labels = [];
 
-    /** @var  string */
+    /** @var string */
     protected $trackingCode;
 
-    /** @var  string */
+    /** @var string */
     protected $trackingUrl;
 
     /**
@@ -41,6 +44,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param string $orderReference
+     *
      * @return GetTrackingCodeResponse
      */
     public function setOrderReference($orderReference)
@@ -60,6 +64,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param bool $sent
+     *
      * @return GetTrackingCodeResponse
      */
     public function setSent($sent)
@@ -79,6 +84,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param string $zipcode
+     *
      * @return GetTrackingCodeResponse
      */
     public function setZipcode($zipcode)
@@ -98,6 +104,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param Label[] $labels
+     *
      * @return GetTrackingCodeResponse
      */
     public function setLabels($labels)
@@ -117,6 +124,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param string $trackingCode
+     *
      * @return GetTrackingCodeResponse
      */
     public function setTrackingCode($trackingCode)
@@ -136,6 +144,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param string $trackingUrl
+     *
      * @return GetTrackingCodeResponse
      */
     public function setTrackingUrl($trackingUrl)
@@ -144,8 +153,4 @@ class GetTrackingCodeResponse
 
         return $this;
     }
-
-
-
-
 }

@@ -1,9 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 10-8-17
- * Time: 16:37
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Serializer\Handler;
@@ -15,12 +19,11 @@ class DateHandler extends BaseDateHandler
 {
     public static function getSubscribingMethods()
     {
-        $methods = array();
-        $deserializationTypes = array('DateTime', 'DateTimeImmutable', 'DateInterval');
-        $serialisationTypes = array('DateTime', 'DateTimeImmutable', 'DateInterval');
+        $methods = [];
+        $deserializationTypes = ['DateTime', 'DateTimeImmutable', 'DateInterval'];
+        $serialisationTypes = ['DateTime', 'DateTimeImmutable', 'DateInterval'];
 
-        foreach (array('array') as $format) {
-
+        foreach (['array'] as $format) {
             foreach ($deserializationTypes as $type) {
                 $methods[] = [
                     'type' => $type,
@@ -30,12 +33,12 @@ class DateHandler extends BaseDateHandler
             }
 
             foreach ($serialisationTypes as $type) {
-                $methods[] = array(
+                $methods[] = [
                     'type' => $type,
                     'format' => $format,
                     'direction' => GraphNavigator::DIRECTION_SERIALIZATION,
-                    'method' => 'serialize' . $type,
-                );
+                    'method' => 'serialize'.$type,
+                ];
             }
         }
 

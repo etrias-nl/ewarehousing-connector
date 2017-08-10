@@ -1,38 +1,41 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
 
-
 class StockProduct
 {
-    /** @var  string */
+    /** @var string */
     protected $sku;
 
-    /** @var  string */
+    /** @var string */
     protected $ean;
 
-    /** @var  int */
+    /** @var int */
     protected $width;
 
-    /** @var  int */
+    /** @var int */
     protected $height;
 
-    /** @var  int */
+    /** @var int */
     protected $depth;
 
-    /** @var  int */
+    /** @var int */
     protected $weight;
 
-    /** @var  bool */
+    /** @var bool */
     protected $extra;
 
-    /** @var  bool */
+    /** @var bool */
     protected $packingSlipVisible;
 
     /** @var string
@@ -45,14 +48,14 @@ class StockProduct
 
     /**
      * StockProduct constructor.
+     *
      * @param string $articleCode
      * @param string $description
      */
     public function __construct(
         $articleCode,
         $description
-    )
-    {
+    ) {
         $this->articleCode = $articleCode;
         $this->description = $description;
     }
@@ -67,6 +70,7 @@ class StockProduct
 
     /**
      * @param string $sku
+     *
      * @return StockProduct
      */
     public function setSku($sku)
@@ -86,6 +90,7 @@ class StockProduct
 
     /**
      * @param string $ean
+     *
      * @return StockProduct
      */
     public function setEan($ean)
@@ -105,6 +110,7 @@ class StockProduct
 
     /**
      * @param int $width
+     *
      * @return StockProduct
      */
     public function setWidth($width)
@@ -124,6 +130,7 @@ class StockProduct
 
     /**
      * @param int $height
+     *
      * @return StockProduct
      */
     public function setHeight($height)
@@ -143,6 +150,7 @@ class StockProduct
 
     /**
      * @param int $depth
+     *
      * @return StockProduct
      */
     public function setDepth($depth)
@@ -162,6 +170,7 @@ class StockProduct
 
     /**
      * @param int $weight
+     *
      * @return StockProduct
      */
     public function setWeight($weight)
@@ -181,6 +190,7 @@ class StockProduct
 
     /**
      * @param bool $extra
+     *
      * @return StockProduct
      */
     public function setExtra($extra)
@@ -200,6 +210,7 @@ class StockProduct
 
     /**
      * @param bool $packingSlipVisible
+     *
      * @return StockProduct
      */
     public function setPackingSlipVisible($packingSlipVisible)
@@ -219,6 +230,7 @@ class StockProduct
 
     /**
      * @param string $articleCode
+     *
      * @return StockProduct
      */
     public function setArticleCode($articleCode)
@@ -238,6 +250,7 @@ class StockProduct
 
     /**
      * @param string $description
+     *
      * @return StockProduct
      */
     public function setDescription($description)
@@ -246,6 +259,4 @@ class StockProduct
 
         return $this;
     }
-
-
 }

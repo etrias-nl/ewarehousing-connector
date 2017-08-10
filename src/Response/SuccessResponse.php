@@ -1,25 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 9-8-17
- * Time: 9:18
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Response;
 
-use DateTime;
-use Etrias\EwarehousingConnector\Types\Address;
-use Etrias\EwarehousingConnector\Types\OrderLine;
-
 class SuccessResponse
 {
-    /** @var  bool */
+    /** @var bool */
     protected $success;
 
-    /** @var  string */
+    /** @var string */
     protected $message;
-
 
     /**
      * @return bool
@@ -47,6 +46,7 @@ class SuccessResponse
 
     /**
      * @param string $message
+     *
      * @return SuccessResponse
      */
     public function setMessage($message)
@@ -55,8 +55,4 @@ class SuccessResponse
 
         return $this;
     }
-
-
-
-
 }

@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Response;
-
 
 use DateTime;
 use Etrias\EwarehousingConnector\Types\InboundResponseLine;
@@ -17,19 +20,19 @@ class InboundResponse
     /** @var DateTime */
     protected $date;
 
-    /** @var  string */
+    /** @var string */
     protected $reference;
 
-    /** @var  string */
+    /** @var string */
     protected $status;
 
-    /** @var  string */
+    /** @var string */
     protected $statusCode;
 
-    /** @var  string */
+    /** @var string */
     protected $typeCode;
 
-    /** @var  InboundResponseLine[] */
+    /** @var InboundResponseLine[] */
     protected $inboundLines;
 
     /**
@@ -42,6 +45,7 @@ class InboundResponse
 
     /**
      * @param DateTime $date
+     *
      * @return InboundResponse
      */
     public function setDate($date)
@@ -61,6 +65,7 @@ class InboundResponse
 
     /**
      * @param string $reference
+     *
      * @return InboundResponse
      */
     public function setReference($reference)
@@ -80,6 +85,7 @@ class InboundResponse
 
     /**
      * @param string $status
+     *
      * @return InboundResponse
      */
     public function setStatus($status)
@@ -99,6 +105,7 @@ class InboundResponse
 
     /**
      * @param string $statusCode
+     *
      * @return InboundResponse
      */
     public function setStatusCode($statusCode)
@@ -118,6 +125,7 @@ class InboundResponse
 
     /**
      * @param string $typeCode
+     *
      * @return InboundResponse
      */
     public function setTypeCode($typeCode)
@@ -137,6 +145,7 @@ class InboundResponse
 
     /**
      * @param InboundResponseLine[] $inboundLines
+     *
      * @return InboundResponse
      */
     public function setInboundLines($inboundLines)
@@ -145,6 +154,4 @@ class InboundResponse
 
         return $this;
     }
-
-
 }

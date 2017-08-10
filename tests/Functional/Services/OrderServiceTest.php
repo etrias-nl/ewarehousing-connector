@@ -21,20 +21,20 @@ use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\Order;
 use Etrias\EwarehousingConnector\Types\OrderLine;
 
-
+/**
+ * @coversNothing
+ */
 class OrderServiceTest extends BaseServiceTest
 {
-
-    /** @var  OrderService */
+    /** @var OrderService */
     protected $service;
 
     protected static $reference;
 
     public static function setUpBeforeClass()
     {
-        static::$reference = 'order_'.rand();
+        static::$reference = 'order_'.random_int();
     }
-
 
     public function setUp()
     {
@@ -46,7 +46,7 @@ class OrderServiceTest extends BaseServiceTest
     {
         $response = $this->service->getListing(new DateTime('- 1 month'), new DateTime('today'));
 
-        $this->assertTrue(is_array($response));
+        $this->assertInternalType('array', $response);
         $this->assertInstanceOf(OrderResponse::class, reset($response));
     }
 
@@ -86,7 +86,6 @@ class OrderServiceTest extends BaseServiceTest
     {
         $response = $this->service->getTrackingCode([static::$reference]);
 
-        $this->assertTrue(is_array($response));
+        $this->assertInternalType('array', $response);
     }
-
 }

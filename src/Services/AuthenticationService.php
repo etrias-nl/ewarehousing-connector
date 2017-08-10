@@ -1,20 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:03
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Services;
 
-
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
-use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Response\GetContextResponse;
 use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
 use JMS\Serializer\SerializerInterface;
-use Psr\Cache\CacheItemInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\NullAdapter;
 
@@ -23,7 +24,15 @@ class AuthenticationService implements AuthenticationServiceInterface
     use ServiceTrait;
 
     const CACHE_KEY = 'eWh-context-cc503444-6c3a-4fb7-b492-a75f2caa63a9';
-    const CACHE_TTL = 60*15;
+    const CACHE_TTL = 60 * 15;
+
+    /**
+     * @var EwarehousingClient
+     */
+    protected $client;
+
+    /** @var AdapterInterface */
+    protected $cacheAdapter;
 
     /**
      * @var string
@@ -39,21 +48,13 @@ class AuthenticationService implements AuthenticationServiceInterface
     private $password;
 
     /**
-     * @var EwarehousingClient
-     */
-    protected $client;
-
-    /** @var AdapterInterface */
-    protected $cacheAdapter;
-
-
-    /**
      * AuthenticationService constructor.
-     * @param EwarehousingClient $client
-     * @param SerializerInterface $serializer
-     * @param string $userName
-     * @param string $customerId
-     * @param string $password
+     *
+     * @param EwarehousingClient    $client
+     * @param SerializerInterface   $serializer
+     * @param string                $userName
+     * @param string                $customerId
+     * @param string                $password
      * @param AdapterInterface|null $cacheAdapter
      */
     public function __construct(
@@ -63,8 +64,7 @@ class AuthenticationService implements AuthenticationServiceInterface
         $customerId,
         $password,
         AdapterInterface $cacheAdapter = null
-    )
-    {
+    ) {
         $this->userName = $userName;
         $this->customerId = $customerId;
         $this->password = $password;
@@ -86,9 +86,9 @@ class AuthenticationService implements AuthenticationServiceInterface
         ];
 
         $guzzleResponse = $this->client->post('2/auth', ['form_params' => $data]);
+
         return $this->deserializeResponse($guzzleResponse, GetContextResponse::class);
     }
-
 
     /**
      * @return string
@@ -109,7 +109,6 @@ class AuthenticationService implements AuthenticationServiceInterface
         $this->cacheAdapter->save($cacheItem);
 
         return $context->getContext();
-
     }
 
     /**

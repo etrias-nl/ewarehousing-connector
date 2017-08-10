@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
-
 
 class OrderLine
 {
@@ -17,42 +20,41 @@ class OrderLine
     /** @var string */
     protected $articleDescription;
 
-    /** @var  int */
+    /** @var int */
     protected $quantity;
 
-    /** @var  string */
+    /** @var string */
     protected $title;
 
-    /** @var  string */
+    /** @var string */
     protected $description;
 
-    /** @var  string */
+    /** @var string */
     protected $imageUrl;
 
-    /** @var  string */
+    /** @var string */
     protected $seoTitle;
 
-    /** @var  string */
+    /** @var string */
     protected $seoDescription;
 
-    /** @var  string */
+    /** @var string */
     protected $deepUrl;
 
-    /** @var  string[] */
+    /** @var string[] */
     protected $categories = [];
 
-    /** @var  string[] */
+    /** @var string[] */
     protected $serialNumbers = [];
 
-    /** @var  string */
+    /** @var string */
     protected $statusCode;
 
     public function __construct(
         $articleCode,
         $articleDescription,
         $quantity
-    )
-    {
+    ) {
         $this->articleCode = $articleCode;
         $this->articleDescription = $articleDescription;
         $this->quantity = $quantity;
@@ -68,6 +70,7 @@ class OrderLine
 
     /**
      * @param string $articleCode
+     *
      * @return OrderLine
      */
     public function setArticleCode($articleCode)
@@ -87,6 +90,7 @@ class OrderLine
 
     /**
      * @param string $articleDescription
+     *
      * @return OrderLine
      */
     public function setArticleDescription($articleDescription)
@@ -106,6 +110,7 @@ class OrderLine
 
     /**
      * @param int $quantity
+     *
      * @return OrderLine
      */
     public function setQuantity($quantity)
@@ -125,6 +130,7 @@ class OrderLine
 
     /**
      * @param string $title
+     *
      * @return OrderLine
      */
     public function setTitle($title)
@@ -144,6 +150,7 @@ class OrderLine
 
     /**
      * @param string $description
+     *
      * @return OrderLine
      */
     public function setDescription($description)
@@ -163,6 +170,7 @@ class OrderLine
 
     /**
      * @param string $imageUrl
+     *
      * @return OrderLine
      */
     public function setImageUrl($imageUrl)
@@ -182,6 +190,7 @@ class OrderLine
 
     /**
      * @param string $seoTitle
+     *
      * @return OrderLine
      */
     public function setSeoTitle($seoTitle)
@@ -201,6 +210,7 @@ class OrderLine
 
     /**
      * @param string $seoDescription
+     *
      * @return OrderLine
      */
     public function setSeoDescription($seoDescription)
@@ -220,6 +230,7 @@ class OrderLine
 
     /**
      * @param string $deepUrl
+     *
      * @return OrderLine
      */
     public function setDeepUrl($deepUrl)
@@ -239,6 +250,7 @@ class OrderLine
 
     /**
      * @param string[] $categories
+     *
      * @return OrderLine
      */
     public function setCategories(array $categories)
@@ -258,6 +270,7 @@ class OrderLine
 
     /**
      * @param \string[] $serialNumbers
+     *
      * @return OrderLine
      */
     public function setSerialNumbers(array $serialNumbers)
@@ -277,6 +290,7 @@ class OrderLine
 
     /**
      * @param string $statusCode
+     *
      * @return OrderLine
      */
     public function setStatusCode($statusCode)
@@ -285,8 +299,4 @@ class OrderLine
 
         return $this;
     }
-
-
-
-
 }

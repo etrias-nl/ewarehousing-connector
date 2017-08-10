@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 9-8-17
- * Time: 12:17
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Client;
-
 
 use Etrias\EwarehousingConnector\Client\Middleware\AuthenticationMiddleware;
 use Etrias\EwarehousingConnector\Services\AuthenticationServiceInterface;
@@ -16,8 +19,7 @@ use GuzzleHttp\HandlerStack;
 
 class ClientFactory
 {
-
-    static public function create(array $config = [], AuthenticationServiceInterface $authenticationService)
+    public static function create(array $config, AuthenticationServiceInterface $authenticationService)
     {
         $handler = new CurlHandler();
         $stack = HandlerStack::create($handler);

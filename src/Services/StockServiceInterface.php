@@ -1,9 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 15:22
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Services;
@@ -15,13 +19,14 @@ use Etrias\EwarehousingConnector\Types\StockProduct;
 interface StockServiceInterface
 {
     /**
-     * @param string|null $articleCode
-     * @param string|null $articleDescription
+     * @param string|null   $articleCode
+     * @param string|null   $articleDescription
      * @param DateTime|null $updatedAfter
-     * @param int $page
-     * @param int $limit
-     * @param null $sort
-     * @param null $direction
+     * @param int           $page
+     * @param int           $limit
+     * @param null          $sort
+     * @param null          $direction
+     *
      * @return StockResponse[]
      */
     public function getListing(
@@ -36,8 +41,8 @@ interface StockServiceInterface
 
     /**
      * @param string $articleCode
-     * @param int $minStock
-     * @param int $margin
+     * @param int    $minStock
+     * @param int    $margin
      */
     public function updateStock($articleCode, $minStock, $margin);
 

@@ -1,13 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 9-8-17
- * Time: 9:18
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Response;
-
 
 use Etrias\EwarehousingConnector\Types\Customer;
 
@@ -21,7 +24,7 @@ class GetContextResponse
     /** @var Customer[] */
     protected $customers = [];
 
-    /** @var  string */
+    /** @var string */
     protected $type;
 
     /**
@@ -34,6 +37,7 @@ class GetContextResponse
 
     /**
      * @param string $context
+     *
      * @return GetContextResponse
      */
     public function setContext($context)
@@ -53,6 +57,7 @@ class GetContextResponse
 
     /**
      * @param Customer[] $customers
+     *
      * @return GetContextResponse
      */
     public function setCustomers($customers)
@@ -72,6 +77,7 @@ class GetContextResponse
 
     /**
      * @param string $type
+     *
      * @return GetContextResponse
      */
     public function setType($type)
@@ -80,8 +86,4 @@ class GetContextResponse
 
         return $this;
     }
-
-
-
-
 }

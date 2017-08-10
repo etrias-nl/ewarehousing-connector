@@ -1,17 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cprinse
- * Date: 8-8-17
- * Time: 14:13
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace Etrias\EwarehousingConnector\Types;
 
-
 class CancelOrderLine
 {
-    /** @var string  */
+    /** @var string */
     private $articleCode;
 
     /** @var int */
@@ -19,8 +22,9 @@ class CancelOrderLine
 
     /**
      * CancelOrderLine constructor.
+     *
      * @param string $articleCode
-     * @param int $quantity
+     * @param int    $quantity
      */
     public function __construct($articleCode, $quantity)
     {
@@ -38,6 +42,7 @@ class CancelOrderLine
 
     /**
      * @param string $articleCode
+     *
      * @return CancelOrderLine
      */
     public function setArticleCode($articleCode)
@@ -57,6 +62,7 @@ class CancelOrderLine
 
     /**
      * @param int $quantity
+     *
      * @return CancelOrderLine
      */
     public function setQuantity($quantity)
@@ -65,6 +71,4 @@ class CancelOrderLine
 
         return $this;
     }
-
-
 }
