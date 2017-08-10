@@ -113,8 +113,8 @@ class OrderService implements OrderServiceInterface
         $data = [
             'reference' => $reference,
             'date' => $date->format('Y-m-d'),
-            'address' => json_decode($this->serializer->serialize($address, 'json'), true),
-            'order_lines' => json_decode($this->serializer->serialize($orderLines, 'json'), true)
+            'address' => $this->serializer->serialize($address, 'array'),
+            'order_lines' => $this->serializer->serialize($orderLines, 'array')
         ];
 
         $guzzleResponse = $this->client->post('/1/orders/update', [RequestOptions::FORM_PARAMS => $data]);
@@ -125,14 +125,20 @@ class OrderService implements OrderServiceInterface
     /**
      * @param string $reference
      * @param OrderLine[] $orderLines
+     * @return SuccessResponse
      */
     public function cancelOrder(
         $reference,
         array $orderLines = []
     ) {
 
-        
+        $data = [
+            'order_lines'=> $this->serializer->serialize($orderLines, 'array')
+        ];
+
         $guzzleResponse = $this->client->post('/1/orders/cancel/'.$reference, [RequestOptions::FORM_PARAMS => $data]);
+
+        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
 
     public function getTrackingCode($reference) {

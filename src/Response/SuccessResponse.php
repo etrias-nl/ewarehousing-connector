@@ -14,7 +14,49 @@ use Etrias\EwarehousingConnector\Types\OrderLine;
 
 class SuccessResponse
 {
-    public function getSuccess() {
-        return true;
+    /** @var  bool */
+    protected $success;
+
+    /** @var  string */
+    protected $message;
+
+
+    /**
+     * @return bool
+     */
+    public function isSuccess()
+    {
+        return $this->success;
     }
+
+    /**
+     * @param bool $success
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param string $message
+     * @return SuccessResponse
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+
+
+
 }

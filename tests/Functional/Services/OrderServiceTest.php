@@ -17,6 +17,7 @@ use Etrias\EwarehousingConnector\Response\OrderResponse;
 use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Services\OrderService;
 use Etrias\EwarehousingConnector\Types\Address;
+use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\Order;
 use Etrias\EwarehousingConnector\Types\OrderLine;
 
@@ -26,6 +27,14 @@ class OrderServiceTest extends BaseServiceTest
 
     /** @var  OrderService */
     protected $service;
+
+    protected static $reference;
+
+    public static function setUpBeforeClass()
+    {
+        static::$reference = 'order_'.rand();
+    }
+
 
     public function setUp()
     {
@@ -52,18 +61,24 @@ class OrderServiceTest extends BaseServiceTest
     {
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
         $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 2);
-        $order = new Order('test_'.rand(), new DateTime('today'), $address, [$orderLine]);
+        $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine]);
         $response = $this->service->addOrder($order);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
     public function testUpdateOrder()
     {
-        $reference = 'ET193417';
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
         $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 2);
 
-        $response = $this->service->updateOrder($reference, new DateTime('today'), $address, [$orderLine]);
+        $response = $this->service->updateOrder(static::$reference, new DateTime('today'), $address, [$orderLine]);
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
+    public function testCancelOrder()
+    {
+        $orderLines = [new CancelOrderLine('8711131842835', 5)];
+        $response = $this->service->cancelOrder(static::$reference, $orderLines);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 

@@ -17,9 +17,13 @@ use Etrias\EwarehousingConnector\Client\ClientFactory;
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
 use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Response\GetContextResponse;
+use Etrias\EwarehousingConnector\Serializer\ArrayDeserializationVisitor;
+use Etrias\EwarehousingConnector\Serializer\ArraySerializationVisitor;
 use Etrias\EwarehousingConnector\Services\AuthenticationService;
 use Etrias\EwarehousingConnector\Services\AuthenticationServiceInterface;
 use Etrias\EwarehousingConnector\Types\Customer;
+use JMS\Serializer\Naming\CamelCaseNamingStrategy;
+use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
@@ -45,9 +49,13 @@ abstract class BaseServiceTest extends TestCase
         $client = new EwarehousingClient($config);
 
         $this->serializer = SerializerBuilder::create()
-            ->setDebug(true)
             ->addMetadataDir(__DIR__.'/../../../src/Serializer/Metadata', 'Etrias\EwarehousingConnector')
+            ->addDefaultDeserializationVisitors()
+            ->addDefaultSerializationVisitors()
+            ->setSerializationVisitor('array', new ArraySerializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy())))
+            ->setDeserializationVisitor('array', new ArrayDeserializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy())))
             ->build();
+
 
         $authenticationService = new AuthenticationService(
             $client,

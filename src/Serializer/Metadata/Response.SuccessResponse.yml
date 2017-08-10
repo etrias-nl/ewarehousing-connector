@@ -1,0 +1,7 @@
+Etrias\EwarehousingConnector\Response\SuccessResponse:
+  properties:
+    success:
+      type: boolean
+    message:
+      type: string
+
