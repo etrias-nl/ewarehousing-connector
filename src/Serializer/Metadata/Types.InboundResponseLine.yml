@@ -1,0 +1,16 @@
+Etrias\EwarehousingConnector\Types\InboundResponseLine:
+  properties:
+    itemId:
+      type: string
+      serialized_name: item_id
+    articleCode:
+      type: string
+      serialized_name: article_code
+    variant:
+      type: string
+      serialized_name: article_code
+    quantity:
+      type: float
+    skuUnit:
+      type: string
+      serialized_name: skuunit

@@ -19,9 +19,12 @@ use Etrias\EwarehousingConnector\Client\EwarehousingClientInterface;
 use Etrias\EwarehousingConnector\Response\GetContextResponse;
 use Etrias\EwarehousingConnector\Serializer\ArrayDeserializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\ArraySerializationVisitor;
+use Etrias\EwarehousingConnector\Serializer\Handler\DateHandler;
 use Etrias\EwarehousingConnector\Services\AuthenticationService;
 use Etrias\EwarehousingConnector\Services\AuthenticationServiceInterface;
 use Etrias\EwarehousingConnector\Types\Customer;
+use JMS\Serializer\Accessor\DefaultAccessorStrategy;
+use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\Naming\SerializedNameAnnotationStrategy;
 use JMS\Serializer\SerializerBuilder;
@@ -52,8 +55,12 @@ abstract class BaseServiceTest extends TestCase
             ->addMetadataDir(__DIR__.'/../../../src/Serializer/Metadata', 'Etrias\EwarehousingConnector')
             ->addDefaultDeserializationVisitors()
             ->addDefaultSerializationVisitors()
-            ->setSerializationVisitor('array', new ArraySerializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy())))
-            ->setDeserializationVisitor('array', new ArrayDeserializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy())))
+            ->addDefaultHandlers()
+            ->configureHandlers(function (HandlerRegistry $registry) {
+                $registry->registerSubscribingHandler(new DateHandler());
+            })
+            ->setSerializationVisitor('array', new ArraySerializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy()), new DefaultAccessorStrategy()))
+            ->setDeserializationVisitor('array', new ArrayDeserializationVisitor(new SerializedNameAnnotationStrategy(new CamelCaseNamingStrategy()), new DefaultAccessorStrategy()))
             ->build();
 
 

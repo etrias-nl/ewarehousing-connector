@@ -1,0 +1,9 @@
+Etrias\EwarehousingConnector\Types\InboundLine:
+  properties:
+    date:
+      type: DateTime<'Y-m-d', '', 'Y-m-d'>
+    articleCode:
+      type: string
+      serialized_name: article_code
+    quantity:
+      type: float
