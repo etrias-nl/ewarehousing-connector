@@ -19,7 +19,6 @@ use Etrias\EwarehousingConnector\Serializer\ArrayDeserializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\ArraySerializationVisitor;
 use Etrias\EwarehousingConnector\Serializer\Handler\DateHandler;
 use Etrias\EwarehousingConnector\Services\AuthenticationService;
-use GuzzleHttp\Middleware;
 use JMS\Serializer\Accessor\DefaultAccessorStrategy;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
@@ -71,6 +70,9 @@ abstract class BaseServiceTest extends TestCase
             new FilesystemAdapter()
         );
 
-        $this->client = ClientFactory::create($config, $authenticationService);
+        $this->client = ClientFactory::create()
+            ->setAuthenticationService($authenticationService)
+            ->setConfig($config)
+            ->build();
     }
 }
