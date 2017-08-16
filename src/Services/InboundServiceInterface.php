@@ -13,6 +13,8 @@
 namespace Etrias\EwarehousingConnector\Services;
 
 use DateTime;
+use Etrias\EwarehousingConnector\Response\InboundResponse;
+use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Types\InboundLine;
 
 interface InboundServiceInterface
@@ -23,12 +25,14 @@ interface InboundServiceInterface
      * @param int      $page
      * @param null     $sort
      * @param null     $direction
+     * @return InboundResponse[]
      */
     public function getListing(DateTime $from, DateTime $to, $page = 1, $sort = null, $direction = null);
 
     /**
      * @param $reference
      * @param InboundLine[] $lines
+     * @return SuccessResponse
      */
     public function createInbound($reference, array $lines);
 }

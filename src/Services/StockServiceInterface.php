@@ -14,6 +14,7 @@ namespace Etrias\EwarehousingConnector\Services;
 
 use DateTime;
 use Etrias\EwarehousingConnector\Response\StockResponse;
+use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Types\StockProduct;
 
 interface StockServiceInterface
@@ -43,11 +44,13 @@ interface StockServiceInterface
      * @param string $articleCode
      * @param int    $minStock
      * @param int    $margin
+     * @return SuccessResponse
      */
     public function updateStock($articleCode, $minStock, $margin);
 
     /**
      * @param StockProduct[] $products
+     * @return SuccessResponse
      */
     public function createStock(array $products = []);
 }
