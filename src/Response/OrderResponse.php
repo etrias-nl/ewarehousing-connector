@@ -27,6 +27,9 @@ class OrderResponse
     /** @var string */
     protected $shipped;
 
+    /** @var  string */
+    protected $status;
+
     /** @var string */
     protected $statusCode;
 
@@ -95,6 +98,26 @@ class OrderResponse
     public function setShipped($shipped)
     {
         $this->shipped = $shipped;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     *
+     * @return OrderResponse
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
         return $this;
     }

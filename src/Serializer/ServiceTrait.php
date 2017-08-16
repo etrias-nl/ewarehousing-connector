@@ -32,8 +32,7 @@ trait ServiceTrait
      */
     protected function deserializeResponse(ResponseInterface $response, $className, DeserializationContext $context = null)
     {
-        $content = $response->getBody()->getContents();
-        $response->getBody()->rewind();
+        $content = (string) $response->getBody();
 
         return $this->serializer->deserialize(
             $content,
