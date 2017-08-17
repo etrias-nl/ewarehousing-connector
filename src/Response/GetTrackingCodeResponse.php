@@ -34,6 +34,9 @@ class GetTrackingCodeResponse
     /** @var string */
     protected $trackingUrl;
 
+    /** @var  string */
+    protected $shipper;
+
     /**
      * @return string
      */
@@ -153,4 +156,25 @@ class GetTrackingCodeResponse
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getShipper(): string
+    {
+        return $this->shipper;
+    }
+
+    /**
+     * @param string $shipper
+     * @return GetTrackingCodeResponse
+     */
+    public function setShipper(string $shipper): GetTrackingCodeResponse
+    {
+        $this->shipper = $shipper;
+
+        return $this;
+    }
+
+
 }

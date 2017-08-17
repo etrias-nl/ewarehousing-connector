@@ -21,13 +21,13 @@ interface InboundServiceInterface
 {
     /**
      * @param DateTime $from
-     * @param DateTime $to
+     * @param DateTime|null $to
      * @param int      $page
      * @param null     $sort
      * @param null     $direction
      * @return InboundResponse[]
      */
-    public function getListing(DateTime $from, DateTime $to, $page = 1, $sort = null, $direction = null);
+    public function getListing(DateTime $from, DateTime $to = null, $page = 1, $sort = null, $direction = null);
 
     /**
      * @param $reference

@@ -15,4 +15,6 @@ Etrias\EwarehousingConnector\Response\GetTrackingCodeResponse:
     trackingUrl:
       type: string
       serialized_name: tracking_url
+    shipper:
+      type: string
 
