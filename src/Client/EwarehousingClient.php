@@ -41,6 +41,10 @@ class EwarehousingClient extends Client implements EwarehousingClientInterface
     {
         $body = json_decode($response->getBody(), true);
 
+        if ($body === null && $previous !== null) {
+            throw $previous;
+        }
+
         if (is_array($body) && key_exists('error', $body)) {
             if (is_array($body['error'])) {
                 $exception = new BadRequestException('multiple exceptions see childs', null, $previous);
