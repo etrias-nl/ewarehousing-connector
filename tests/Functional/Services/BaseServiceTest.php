@@ -49,7 +49,6 @@ abstract class BaseServiceTest extends TestCase
 
         $this->serializer = SerializerBuilder::create()
             ->setCacheDir(sys_get_temp_dir().'/jms-cache')
-            ->setDebug(true)
             ->addMetadataDir(__DIR__.'/../../../src/Serializer/Metadata', 'Etrias\EwarehousingConnector')
             ->addDefaultDeserializationVisitors()
             ->addDefaultSerializationVisitors()
@@ -64,7 +63,7 @@ abstract class BaseServiceTest extends TestCase
         $authenticationService = new AuthenticationService(
             $client,
             $this->serializer,
-            getenv('USERNAME'),
+            getenv('WEBSHOPID'),
             getenv('CUSTOMERID'),
             getenv('PASSWORD'),
             new FilesystemAdapter()
