@@ -50,6 +50,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return OrderResponse[]
      */
     public function getListing(
@@ -76,6 +77,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return OrderResponse
      */
     public function getOrder($reference)
@@ -87,6 +89,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return SuccessResponse;
      */
     public function addOrder(Order $order)
@@ -99,6 +102,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return SuccessResponse;
      */
     public function updateOrder(
@@ -121,6 +125,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return SuccessResponse;
      */
     public function cancelOrder(
@@ -138,6 +143,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return GetTrackingCodeResponse[]
      */
     public function getTrackingCode(array $references)

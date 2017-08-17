@@ -14,8 +14,8 @@ namespace Etrias\EwarehousingConnector\Client;
 
 use Etrias\EwarehousingConnector\Exceptions\BadRequestException;
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\ClientException;
+use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
 class EwarehousingClient extends Client implements EwarehousingClientInterface
@@ -34,8 +34,10 @@ class EwarehousingClient extends Client implements EwarehousingClientInterface
 
     /**
      * @param ResponseInterface $body
-     * @return ResponseInterface
+     *
      * @throws BadRequestException
+     *
+     * @return ResponseInterface
      */
     protected function parseError(ResponseInterface $response, Throwable $previous = null)
     {
@@ -45,7 +47,7 @@ class EwarehousingClient extends Client implements EwarehousingClientInterface
             throw $previous;
         }
 
-        if (is_array($body) && key_exists('error', $body)) {
+        if (is_array($body) && array_key_exists('error', $body)) {
             if (is_array($body['error'])) {
                 $exception = new BadRequestException('multiple exceptions see childs', null, $previous);
                 foreach ($body['error'] as $error) {

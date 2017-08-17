@@ -44,12 +44,14 @@ interface StockServiceInterface
      * @param string $articleCode
      * @param int    $minStock
      * @param int    $margin
+     *
      * @return SuccessResponse
      */
     public function updateStock($articleCode, $minStock, $margin);
 
     /**
      * @param StockProduct[] $products
+     *
      * @return SuccessResponse
      */
     public function createStock(array $products = []);

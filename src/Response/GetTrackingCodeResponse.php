@@ -34,7 +34,7 @@ class GetTrackingCodeResponse
     /** @var string */
     protected $trackingUrl;
 
-    /** @var  string */
+    /** @var string */
     protected $shipper;
 
     /**
@@ -167,6 +167,7 @@ class GetTrackingCodeResponse
 
     /**
      * @param string $shipper
+     *
      * @return GetTrackingCodeResponse
      */
     public function setShipper(string $shipper): GetTrackingCodeResponse
@@ -175,6 +176,4 @@ class GetTrackingCodeResponse
 
         return $this;
     }
-
-
 }

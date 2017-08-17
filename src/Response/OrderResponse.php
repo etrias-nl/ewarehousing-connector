@@ -27,7 +27,7 @@ class OrderResponse
     /** @var string */
     protected $shipped;
 
-    /** @var  string */
+    /** @var string */
     protected $status;
 
     /** @var string */
