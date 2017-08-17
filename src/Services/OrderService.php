@@ -50,6 +50,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     * @return OrderResponse[]
      */
     public function getListing(
         DateTime $from,
@@ -75,6 +76,7 @@ class OrderService implements OrderServiceInterface
 
     /**
      * {@inheritdoc}
+     * @return OrderResponse
      */
     public function getOrder($reference)
     {

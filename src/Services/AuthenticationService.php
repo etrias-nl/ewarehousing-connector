@@ -77,6 +77,9 @@ class AuthenticationService implements AuthenticationServiceInterface
         $this->serializer = $serializer;
     }
 
+    /**
+     * @return GetContextResponse
+     */
     public function getContext()
     {
         $data = [

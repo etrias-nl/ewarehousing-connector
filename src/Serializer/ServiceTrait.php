@@ -28,7 +28,7 @@ trait ServiceTrait
      * @param string                 $className
      * @param DeserializationContext $context
      *
-     * @return object
+     * @return mixed
      */
     protected function deserializeResponse(ResponseInterface $response, $className, DeserializationContext $context = null)
     {
