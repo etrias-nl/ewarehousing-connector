@@ -44,7 +44,7 @@ interface OrderServiceInterface
 
     /**
      * @param string $reference
-     * @return GetOrderResponse
+     * @return OrderResponse
      */
     public function getOrder($reference);
 
