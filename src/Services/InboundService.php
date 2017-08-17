@@ -44,6 +44,8 @@ class InboundService implements InboundServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return InboundResponse[]
      */
     public function getListing(
         DateTime $from = null,
@@ -67,6 +69,8 @@ class InboundService implements InboundServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return SuccessResponse
      */
     public function createInbound($reference, array $lines)
     {

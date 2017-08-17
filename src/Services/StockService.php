@@ -44,6 +44,8 @@ class StockService implements StockServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return StockResponse[]
      */
     public function getListing(
         $articleCode = null,
@@ -71,6 +73,8 @@ class StockService implements StockServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return SuccessResponse
      */
     public function updateStock($articleCode, $minStock, $margin)
     {
@@ -87,6 +91,8 @@ class StockService implements StockServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @return SuccessResponse
      */
     public function createStock(array $products = [])
     {

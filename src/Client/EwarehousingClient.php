@@ -15,26 +15,51 @@ namespace Etrias\EwarehousingConnector\Client;
 use Etrias\EwarehousingConnector\Exceptions\BadRequestException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 class EwarehousingClient extends Client implements EwarehousingClientInterface
 {
     public function __call($method, $args)
     {
         try {
-            return parent::__call($method, $args);
+            $response = parent::__call($method, $args);
+            $response = $this->parseError($response);
         } catch (ClientException $e) {
-            $response = json_decode($e->getResponse()->getBody()->getContents(), true);
+            $response = $this->parseError($e->getResponse(), $e);
+        }
 
-            if (is_array($response['error'])) {
-                $exception = new BadRequestException('multiple exceptions see childs', null, $e);
-                foreach ($response['error'] as $error) {
-                    $exception->addChild(new BadRequestException(json_encode($error), null, $e));
+        return $response;
+    }
+
+    /**
+     * @param ResponseInterface $body
+     *
+     * @throws BadRequestException
+     *
+     * @return ResponseInterface
+     */
+    protected function parseError(ResponseInterface $response, Throwable $previous = null)
+    {
+        $body = json_decode($response->getBody(), true);
+
+        if ($body === null && $previous !== null) {
+            throw $previous;
+        }
+
+        if (is_array($body) && array_key_exists('error', $body)) {
+            if (is_array($body['error'])) {
+                $exception = new BadRequestException('multiple exceptions see childs', null, $previous);
+                foreach ($body['error'] as $error) {
+                    $exception->addChild(new BadRequestException(json_encode($error), null, $previous));
                 }
             } else {
-                $exception = new BadRequestException($response['error'], null, $e);
+                $exception = new BadRequestException($body['error'] ?? 'Bad Paazl request', null, $previous);
             }
 
             throw $exception;
         }
+
+        return $response;
     }
 }

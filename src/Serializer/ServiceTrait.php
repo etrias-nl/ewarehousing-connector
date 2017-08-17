@@ -28,12 +28,11 @@ trait ServiceTrait
      * @param string                 $className
      * @param DeserializationContext $context
      *
-     * @return object
+     * @return mixed
      */
     protected function deserializeResponse(ResponseInterface $response, $className, DeserializationContext $context = null)
     {
-        $content = $response->getBody()->getContents();
-        $response->getBody()->rewind();
+        $content = (string) $response->getBody();
 
         return $this->serializer->deserialize(
             $content,

@@ -38,7 +38,7 @@ class AuthenticationServiceTest extends BaseServiceTest
         $this->service = new AuthenticationService(
             $client,
             $this->serializer,
-            getenv('USERNAME'),
+            getenv('WEBSHOPID'),
             getenv('CUSTOMERID'),
             getenv('PASSWORD')
         );

@@ -13,6 +13,9 @@
 namespace Etrias\EwarehousingConnector\Services;
 
 use DateTime;
+use Etrias\EwarehousingConnector\Response\GetTrackingCodeResponse;
+use Etrias\EwarehousingConnector\Response\OrderResponse;
+use Etrias\EwarehousingConnector\Response\SuccessResponse;
 use Etrias\EwarehousingConnector\Types\Address;
 use Etrias\EwarehousingConnector\Types\CancelOrderLine;
 use Etrias\EwarehousingConnector\Types\Order;
@@ -27,6 +30,8 @@ interface OrderServiceInterface
      * @param string|null $status
      * @param string|null $sort
      * @param string|null $direction
+     *
+     * @return OrderResponse[]
      */
     public function getListing(
         DateTime $from,
@@ -39,11 +44,15 @@ interface OrderServiceInterface
 
     /**
      * @param string $reference
+     *
+     * @return OrderResponse
      */
     public function getOrder($reference);
 
     /**
      * @param Order $order
+     *
+     * @return SuccessResponse
      */
     public function addOrder(Order $order);
 
@@ -52,17 +61,23 @@ interface OrderServiceInterface
      * @param DateTime     $date
      * @param Address|null $address
      * @param OrderLine[]  $orderLines
+     *
+     * @return SuccessResponse
      */
     public function updateOrder($reference, DateTime $date, Address $address = null, array $orderLines = null);
 
     /**
      * @param string            $reference
      * @param CancelOrderLine[] $orderLines
+     *
+     * @return SuccessResponse
      */
     public function cancelOrder($reference, array $orderLines = []);
 
     /**
      * @param string[] $references
+     *
+     * @return GetTrackingCodeResponse[]
      */
     public function getTrackingCode(array $references);
 }
