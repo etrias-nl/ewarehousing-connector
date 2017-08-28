@@ -57,6 +57,7 @@ class OrderLine
     ) {
         $this->articleCode = $articleCode;
         $this->articleDescription = $articleDescription;
+        $this->description = $articleDescription;
         $this->quantity = $quantity;
     }
 
@@ -96,6 +97,7 @@ class OrderLine
     public function setArticleDescription($articleDescription)
     {
         $this->articleDescription = $articleDescription;
+        $this->description = $articleDescription;
 
         return $this;
     }
@@ -156,6 +158,7 @@ class OrderLine
     public function setDescription($description)
     {
         $this->description = $description;
+        $this->articleDescription = $description;
 
         return $this;
     }

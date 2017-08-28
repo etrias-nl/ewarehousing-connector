@@ -1,8 +1,12 @@
 Etrias\EwarehousingConnector\Types\OrderLine:
+  access_type: public_method
   properties:
     articleCode:
       type: string
       serialized_name: article_code
+    articleDescription:
+      type: string
+      serialized_name: article_description
     description:
       type: string
     quantity:

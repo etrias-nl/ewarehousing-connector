@@ -47,17 +47,18 @@ class EwarehousingClient extends Client implements EwarehousingClientInterface
             throw $previous;
         }
 
-        if (is_array($body) && array_key_exists('error', $body)) {
-            if (is_array($body['error'])) {
+        if (is_array($body)) {
+            $errors =  $body['errors'] ?? $body['error'] ?? null;
+            if (is_array($errors)) {
                 $exception = new BadRequestException('multiple exceptions see childs', null, $previous);
-                foreach ($body['error'] as $error) {
+                foreach ($errors as $error) {
                     $exception->addChild(new BadRequestException(json_encode($error), null, $previous));
                 }
-            } else {
-                $exception = new BadRequestException($body['error'] ?? 'Bad Paazl request', null, $previous);
-            }
+                throw $exception;
 
-            throw $exception;
+            } elseif ($errors !== null) {
+                throw new BadRequestException($body['error'] ?? 'Bad Paazl request', null, $previous);
+            }
         }
 
         return $response;
