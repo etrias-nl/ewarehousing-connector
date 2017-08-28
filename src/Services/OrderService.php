@@ -136,7 +136,7 @@ class OrderService implements OrderServiceInterface
             'order_lines' => $this->serializer->serialize($orderLines, 'array'),
         ];
 
-        $guzzleResponse = $this->client->post('/1/orders/cancel/'.$reference, [RequestOptions::FORM_PARAMS => $data]);
+        $guzzleResponse = $this->client->post('/2/orders/cancel/'.$reference, [RequestOptions::FORM_PARAMS => $data]);
 
         return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
     }
