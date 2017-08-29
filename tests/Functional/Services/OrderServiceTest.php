@@ -60,7 +60,7 @@ class OrderServiceTest extends BaseServiceTest
     public function testAddOrder()
     {
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
-        $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 2);
+        $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 5);
         $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine]);
         $response = $this->service->addOrder($order);
         $this->assertInstanceOf(SuccessResponse::class, $response);
@@ -75,10 +75,27 @@ class OrderServiceTest extends BaseServiceTest
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
-    public function testCancelOrder()
+    public function testCancelOrderWithOrderLine()
     {
-        $orderLines = [new CancelOrderLine('8711131842835', 5)];
+        static::$reference = 'order_'.random_int(0, PHP_INT_MAX);
+        $this->testAddOrder();
+        $orderLines = [new OrderLine('8711131842835', '8711131842835', 1)];
         $response = $this->service->cancelOrder(static::$reference, $orderLines);
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
+    public function testCancelOrderWithCancelOrderLine()
+    {
+        $orderLines = [new CancelOrderLine('8711131842835', 1)];
+        $response = $this->service->cancelOrder(static::$reference, $orderLines);
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
+    public function testCancelCompleteOder()
+    {
+        static::$reference = 'order_'.random_int(0, PHP_INT_MAX);
+        $this->testAddOrder();
+        $response = $this->service->cancelOrder(static::$reference);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
