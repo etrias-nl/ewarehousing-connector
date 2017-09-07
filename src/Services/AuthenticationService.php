@@ -47,15 +47,19 @@ class AuthenticationService implements AuthenticationServiceInterface
      */
     private $password;
 
+    /** @var bool */
+    private $passwordIsPlain;
+
     /**
      * AuthenticationService constructor.
      *
-     * @param EwarehousingClient    $client
-     * @param SerializerInterface   $serializer
-     * @param string                $userName
-     * @param string                $customerId
-     * @param string                $password
+     * @param EwarehousingClient $client
+     * @param SerializerInterface $serializer
+     * @param string $userName
+     * @param string $customerId
+     * @param string $password
      * @param AdapterInterface|null $cacheAdapter
+     * @param bool $passwordIsPlain
      */
     public function __construct(
         EwarehousingClient $client,
@@ -63,7 +67,8 @@ class AuthenticationService implements AuthenticationServiceInterface
         $userName,
         $customerId,
         $password,
-        AdapterInterface $cacheAdapter = null
+        AdapterInterface $cacheAdapter = null,
+        $passwordIsPlain = true
     ) {
         $this->userName = $userName;
         $this->customerId = $customerId;
@@ -75,6 +80,7 @@ class AuthenticationService implements AuthenticationServiceInterface
             $this->cacheAdapter = $cacheAdapter;
         }
         $this->serializer = $serializer;
+        $this->passwordIsPlain = $passwordIsPlain;
     }
 
     /**
@@ -85,7 +91,7 @@ class AuthenticationService implements AuthenticationServiceInterface
         $data = [
             'username' => $this->userName,
             'customer_id' => $this->customerId,
-            'password' => md5($this->password),
+            'password' => $this->passwordIsPlain ? md5($this->password) : $this->password,
         ];
 
         $guzzleResponse = $this->client->post('2/auth', ['form_params' => $data]);
