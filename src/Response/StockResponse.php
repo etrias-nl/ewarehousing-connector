@@ -188,7 +188,7 @@ class StockResponse
     }
 
     /**
-     * @param float $availableStock
+     * @param float $quarantaineStock
      * @param mixed $quarantaineStock
      *
      * @return StockResponse
@@ -209,7 +209,7 @@ class StockResponse
     }
 
     /**
-     * @param float $availableStock
+     * @param float $pickableStock
      * @param mixed $pickableStock
      *
      * @return StockResponse
