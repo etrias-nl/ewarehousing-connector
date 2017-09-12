@@ -53,13 +53,13 @@ class AuthenticationService implements AuthenticationServiceInterface
     /**
      * AuthenticationService constructor.
      *
-     * @param EwarehousingClient $client
-     * @param SerializerInterface $serializer
-     * @param string $userName
-     * @param string $customerId
-     * @param string $password
+     * @param EwarehousingClient    $client
+     * @param SerializerInterface   $serializer
+     * @param string                $userName
+     * @param string                $customerId
+     * @param string                $password
      * @param AdapterInterface|null $cacheAdapter
-     * @param bool $passwordIsPlain
+     * @param bool                  $passwordIsPlain
      */
     public function __construct(
         EwarehousingClient $client,

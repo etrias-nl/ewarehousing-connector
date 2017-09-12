@@ -35,6 +35,12 @@ class StockResponse
     /** @var float */
     protected $availableStock;
 
+    /** @var float */
+    protected $quarantaineStock;
+
+    /** @var float */
+    protected $pickableStock;
+
     /** @var string */
     protected $skuUnit;
 
@@ -169,6 +175,46 @@ class StockResponse
     public function setAvailableStock($availableStock)
     {
         $this->availableStock = $availableStock;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getQuarantaineStock()
+    {
+        return $this->quarantaineStock;
+    }
+
+    /**
+     * @param float $quarantaineStock
+     *
+     * @return StockResponse
+     */
+    public function setQuarantaineStock($quarantaineStock)
+    {
+        $this->quarantaineStock = $quarantaineStock;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPickableStock()
+    {
+        return $this->pickableStock;
+    }
+
+    /**
+     * @param float $pickableStock
+     *
+     * @return StockResponse
+     */
+    public function setPickableStock($pickableStock)
+    {
+        $this->pickableStock = $pickableStock;
 
         return $this;
     }

@@ -17,6 +17,12 @@ Etrias\EwarehousingConnector\Response\StockResponse:
     availableStock:
       type: float
       serialized_name: available_stock
+    quarantaineStock:
+      type: float
+      serialized_name: quarantaine_stock
+    pickableStock:
+      type: float
+      serialized_name: pickable_stock
     skuUnit:
       type: string
       serialized_name: sku_unit
