@@ -50,6 +50,12 @@ class AuthenticationService implements AuthenticationServiceInterface
     /** @var bool */
     private $passwordIsPlain;
 
+    /** @var  integer */
+    protected $cacheTtl;
+
+    /** @var  string */
+    protected $cacheKey;
+
     /**
      * AuthenticationService constructor.
      *
@@ -81,6 +87,46 @@ class AuthenticationService implements AuthenticationServiceInterface
         }
         $this->serializer = $serializer;
         $this->passwordIsPlain = $passwordIsPlain;
+        $this->cacheTtl = self::CACHE_TTL;
+        $this->cacheKey = self::CACHE_KEY;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCacheTtl()
+    {
+        return $this->cacheTtl;
+    }
+
+    /**
+     * @param int $cacheTtl
+     * @return AuthenticationService
+     */
+    public function setCacheTtl($cacheTtl)
+    {
+        $this->cacheTtl = $cacheTtl;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCacheKey()
+    {
+        return $this->cacheKey;
+    }
+
+    /**
+     * @param string $cacheKey
+     * @return AuthenticationService
+     */
+    public function setCacheKey($cacheKey)
+    {
+        $this->cacheKey = $cacheKey;
+
+        return $this;
     }
 
     /**
@@ -104,7 +150,7 @@ class AuthenticationService implements AuthenticationServiceInterface
      */
     public function getHash()
     {
-        $cacheItem = $this->cacheAdapter->getItem(static::CACHE_KEY);
+        $cacheItem = $this->cacheAdapter->getItem($this->getCacheKey());
         if ($cacheItem->isHit()) {
             return $cacheItem->get();
         }
@@ -112,7 +158,7 @@ class AuthenticationService implements AuthenticationServiceInterface
         $context = $this->getContext();
 
         $cacheItem
-            ->expiresAfter(static::CACHE_TTL)
+            ->expiresAfter($this->getCacheTtl())
             ->set($context->getContext());
 
         $this->cacheAdapter->save($cacheItem);
