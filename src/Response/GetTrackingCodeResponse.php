@@ -160,7 +160,7 @@ class GetTrackingCodeResponse
     /**
      * @return string
      */
-    public function getShipper(): string
+    public function getShipper()
     {
         return $this->shipper;
     }
@@ -170,7 +170,7 @@ class GetTrackingCodeResponse
      *
      * @return GetTrackingCodeResponse
      */
-    public function setShipper(string $shipper): GetTrackingCodeResponse
+    public function setShipper($shipper): GetTrackingCodeResponse
     {
         $this->shipper = $shipper;
 
