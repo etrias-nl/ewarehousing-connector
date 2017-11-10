@@ -48,7 +48,7 @@ class StockService implements StockServiceInterface
      * @return StockResponse[]
      */
     public function getListing(
-        $articleCode = null,
+        $articleCodes = null,
         $articleDescription = null,
         DateTime $updatedAfter = null,
         $page = 1,
@@ -57,7 +57,6 @@ class StockService implements StockServiceInterface
         $direction = null
     ) {
         $data = [
-            'article_code' => $articleCode,
             'article_description' => $articleDescription,
             'updated_after' => $updatedAfter ? $updatedAfter->format('Y-m-d') : null,
             'page' => $page,
@@ -65,6 +64,14 @@ class StockService implements StockServiceInterface
             'direction' => $direction,
             'limit' => $limit,
         ];
+
+        if (is_array($articleCodes)) {
+            foreach($articleCodes as $articleCode) {
+                $data['article_code[]'] = $articleCode;
+            }
+        } else {
+            $data['article_code'] = $articleCodes;
+        }
 
         $guzzleResponse = $this->client->get('3/stock', [RequestOptions::QUERY => $data]);
 

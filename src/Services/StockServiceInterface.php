@@ -20,13 +20,13 @@ use Etrias\EwarehousingConnector\Types\StockProduct;
 interface StockServiceInterface
 {
     /**
-     * @param string|null   $articleCode
-     * @param string|null   $articleDescription
-     * @param DateTime|null $updatedAfter
-     * @param int           $page
-     * @param int           $limit
-     * @param null          $sort
-     * @param null          $direction
+     * @param string|array|null   $articleCode
+     * @param string|null       $articleDescription
+     * @param DateTime|null     $updatedAfter
+     * @param int               $page
+     * @param int               $limit
+     * @param null              $sort
+     * @param null              $direction
      *
      * @return StockResponse[]
      */
