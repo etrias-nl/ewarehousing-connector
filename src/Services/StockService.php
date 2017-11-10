@@ -57,7 +57,7 @@ class StockService implements StockServiceInterface
         $direction = null
     ) {
         $data = [
-            'article_code[]' => $articleCodes,
+            'article_code' => $articleCodes,
             'article_description' => $articleDescription,
             'updated_after' => $updatedAfter ? $updatedAfter->format('Y-m-d') : null,
             'page' => $page,
