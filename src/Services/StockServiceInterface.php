@@ -31,7 +31,7 @@ interface StockServiceInterface
      * @return StockResponse[]
      */
     public function getListing(
-        array $articleCodes = [],
+        array $articleCodes = null,
         $articleDescription = null,
         DateTime $updatedAfter = null,
         $page = 1,
