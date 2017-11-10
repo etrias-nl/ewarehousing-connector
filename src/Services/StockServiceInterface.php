@@ -20,18 +20,18 @@ use Etrias\EwarehousingConnector\Types\StockProduct;
 interface StockServiceInterface
 {
     /**
-     * @param string|array|null   $articleCode
-     * @param string|null       $articleDescription
-     * @param DateTime|null     $updatedAfter
-     * @param int               $page
-     * @param int               $limit
-     * @param null              $sort
-     * @param null              $direction
+     * @param string[]      $articleCodes
+     * @param string|null   $articleDescription
+     * @param DateTime|null $updatedAfter
+     * @param int           $page
+     * @param int           $limit
+     * @param null          $sort
+     * @param null          $direction
      *
      * @return StockResponse[]
      */
     public function getListing(
-        $articleCode = null,
+        array $articleCodes = [],
         $articleDescription = null,
         DateTime $updatedAfter = null,
         $page = 1,
