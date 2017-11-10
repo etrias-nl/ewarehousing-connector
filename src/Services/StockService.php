@@ -48,7 +48,7 @@ class StockService implements StockServiceInterface
      * @return StockResponse[]
      */
     public function getListing(
-        $articleCode = null,
+        array $articleCodes = null,
         $articleDescription = null,
         DateTime $updatedAfter = null,
         $page = 1,
@@ -57,7 +57,7 @@ class StockService implements StockServiceInterface
         $direction = null
     ) {
         $data = [
-            'article_code' => $articleCode,
+            'article_code' => $articleCodes,
             'article_description' => $articleDescription,
             'updated_after' => $updatedAfter ? $updatedAfter->format('Y-m-d') : null,
             'page' => $page,
