@@ -75,6 +75,15 @@ class OrderServiceTest extends BaseServiceTest
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
+    public function testUpdateOrderWithoutStreetNumber()
+    {
+        $address = new Address('test', 'street', null, '1000AA', 'Amsterdam', 'NL');
+        $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 2);
+
+        $response = $this->service->updateOrder(static::$reference, new DateTime('today'), $address, [$orderLine]);
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
     public function testCancelOrderWithOrderLine()
     {
         static::$reference = 'order_'.random_int(0, PHP_INT_MAX);
