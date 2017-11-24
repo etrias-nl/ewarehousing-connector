@@ -1,4 +1,5 @@
 Etrias\EwarehousingConnector\Types\Address:
+  access_type: public_method
   properties:
     addressee:
       type: string

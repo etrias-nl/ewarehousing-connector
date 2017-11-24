@@ -188,7 +188,7 @@ class Address
      */
     public function getStreet()
     {
-        return $this->street;
+        return $this->street ? $this->street : '';
     }
 
     /**
@@ -208,7 +208,7 @@ class Address
      */
     public function getStreetNumber()
     {
-        return $this->streetNumber;
+        return $this->streetNumber ? $this->streetNumber : '';
     }
 
     /**
@@ -228,7 +228,7 @@ class Address
      */
     public function getZipcode()
     {
-        return $this->zipcode;
+        return $this->zipcode ? $this->zipcode : '';
     }
 
     /**
@@ -248,7 +248,7 @@ class Address
      */
     public function getCity()
     {
-        return $this->city;
+        return $this->city ? $this->city : '';
     }
 
     /**
@@ -268,7 +268,7 @@ class Address
      */
     public function getCountry()
     {
-        return $this->country;
+        return $this->country ? $this->country : '';
     }
 
     /**
