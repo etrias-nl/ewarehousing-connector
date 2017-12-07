@@ -2,7 +2,7 @@
     "name": "etrias/ewarehousing-connector",
     "description": "PHP connector for ewarehousing api",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.5",
         "guzzlehttp/guzzle": "^6.2",
         "symfony/cache": "^3.3",
         "jms/serializer": "^1.8",
