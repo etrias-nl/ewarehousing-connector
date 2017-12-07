@@ -80,4 +80,14 @@ interface OrderServiceInterface
      * @return GetTrackingCodeResponse[]
      */
     public function getTrackingCode(array $references);
+
+    /**
+     * @param string            $reference
+     * @param string            $fileContent
+     * @param integer           $quantityToPrint
+     * @param boolean           $isShippingLabel
+     *
+     * @return SuccessResponse
+     */
+    public function addDocumentToOrder($reference, $fileContent, $quantityToPrint = 1, $isShippingLabel = 0);
 }

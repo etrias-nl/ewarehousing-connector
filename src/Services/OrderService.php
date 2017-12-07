@@ -152,4 +152,40 @@ class OrderService implements OrderServiceInterface
 
         return $this->deserializeResponse($guzzleResponse, 'array<string, '.GetTrackingCodeResponse::class.'>');
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return SuccessResponse;
+     */
+    public function addDocumentToOrder(
+        $reference,
+        $fileContent,
+        $quantityToPrint = 1,
+        $isShippingLabel = 0
+    ) {
+
+        $guzzleResponse = $this->client->post(
+            '/1/orders/document/'.$reference,
+            [
+                'multipart' => [
+                    [
+                        'name'     => 'allowedquantity',
+                        'contents' => $quantityToPrint
+                    ],
+                    [
+                        'name'     => 'shippingLabel',
+                        'contents' => $isShippingLabel
+                    ],
+                    [
+                        'name'     => 'file',
+                        'contents' => $fileContent,
+                        'filename' => $reference . '.pdf'
+                    ]
+                ]
+            ]
+        );
+
+        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
+    }
 }
