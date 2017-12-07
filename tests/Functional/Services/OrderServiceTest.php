@@ -75,6 +75,32 @@ class OrderServiceTest extends BaseServiceTest
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 
+    public function testAddDocumentToOrder()
+    {
+        $pdfContent = file_get_contents(__DIR__ . '/../../Resources/example.pdf');
+
+        $response = $this->service->addDocumentToOrder(static::$reference, $pdfContent);
+
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
+    public function testAddDocumentToOrderPrint()
+    {
+        $pdfContent = file_get_contents(__DIR__ . '/../../Resources/example.pdf');
+
+        $response = $this->service->addDocumentToOrder(static::$reference, $pdfContent, null,2);
+
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
+    public function testAddDocumentToOrderName()
+    {
+        $pdfContent = file_get_contents(__DIR__.'/../../Resources/example.pdf');
+
+        $response = $this->service->addDocumentToOrder(static::$reference, $pdfContent, 'Test.pdf');
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
+
     public function testUpdateOrderWithoutStreetNumber()
     {
         $address = new Address('test', 'street', null, '1000AA', 'Amsterdam', 'NL');
@@ -114,4 +140,5 @@ class OrderServiceTest extends BaseServiceTest
 
         $this->assertInternalType('array', $response);
     }
+
 }
