@@ -95,9 +95,11 @@ class OrderServiceTest extends BaseServiceTest
 
     public function testAddDocumentToOrderName()
     {
-        $pdfContent = file_get_contents(__DIR__ . '/../../Resources/example.pdf');
+        $pdfContent = file_get_contents(__DIR__.'/../../Resources/example.pdf');
 
         $response = $this->service->addDocumentToOrder(static::$reference, $pdfContent, 'Test.pdf');
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+    }
 
     public function testUpdateOrderWithoutStreetNumber()
     {
