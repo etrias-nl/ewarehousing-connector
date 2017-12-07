@@ -99,6 +99,12 @@ class OrderServiceTest extends BaseServiceTest
 
         $response = $this->service->addDocumentToOrder(static::$reference, $pdfContent, 'Test.pdf');
 
+    public function testUpdateOrderWithoutStreetNumber()
+    {
+        $address = new Address('test', 'street', null, '1000AA', 'Amsterdam', 'NL');
+        $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 2);
+
+        $response = $this->service->updateOrder(static::$reference, new DateTime('today'), $address, [$orderLine]);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 

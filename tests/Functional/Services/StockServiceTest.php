@@ -36,7 +36,6 @@ class StockServiceTest extends BaseServiceTest
     public function testGetListing()
     {
         $response = $this->service->getListing();
-
         $this->assertInternalType('array', $response);
         $this->assertInstanceOf(StockResponse::class, reset($response));
     }
