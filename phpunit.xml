@@ -18,6 +18,7 @@
     >
     <php>
         <env name="WEBSHOPID" value=""/>
+        <env name="CUSTOMERID" value=""/>
         <env name="PASSWORD" value=""/>
     </php>
 

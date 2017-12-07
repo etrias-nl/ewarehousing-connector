@@ -84,10 +84,11 @@ interface OrderServiceInterface
     /**
      * @param string            $reference
      * @param string            $fileContent
-     * @param integer           $quantityToPrint
+     * @param string|null       $fileName
+     * @param integer|null      $quantityToPrint
      * @param boolean           $isShippingLabel
      *
      * @return SuccessResponse
      */
-    public function addDocumentToOrder($reference, $fileContent, $quantityToPrint = 1, $isShippingLabel = 0);
+    public function addDocumentToOrder($reference, $fileContent, $fileName = null, $quantityToPrint = null, $isShippingLabel = false);
 }

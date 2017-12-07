@@ -161,28 +161,38 @@ class OrderService implements OrderServiceInterface
     public function addDocumentToOrder(
         $reference,
         $fileContent,
-        $quantityToPrint = 1,
-        $isShippingLabel = 0
+        $fileName = null,
+        $quantityToPrint = null,
+        $isShippingLabel = false
     ) {
+
+        if ($fileName === null) {
+            $fileName = $reference . '.pdf';
+        }
+
+        $data = [
+            [
+                'name'     => 'shippingLabel',
+                'contents' => (int) $isShippingLabel
+            ],
+            [
+                'name'     => 'file',
+                'contents' => $fileContent,
+                'filename' => $fileName
+            ]
+        ];
+
+        if ($quantityToPrint) {
+            $data[] = [
+                'name'     => 'quantity',
+                'contents' => $quantityToPrint
+            ];
+        }
 
         $guzzleResponse = $this->client->post(
             '/1/orders/document/'.$reference,
             [
-                'multipart' => [
-                    [
-                        'name'     => 'allowedquantity',
-                        'contents' => $quantityToPrint
-                    ],
-                    [
-                        'name'     => 'shippingLabel',
-                        'contents' => $isShippingLabel
-                    ],
-                    [
-                        'name'     => 'file',
-                        'contents' => $fileContent,
-                        'filename' => $reference . '.pdf'
-                    ]
-                ]
+                RequestOptions::MULTIPART => $data
             ]
         );
 
