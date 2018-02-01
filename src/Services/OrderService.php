@@ -182,7 +182,7 @@ class OrderService implements OrderServiceInterface
             ]
         ];
 
-        if ($quantityToPrint) {
+        if (is_numeric($quantityToPrint)) {
             $data[] = [
                 'name'     => 'quantity',
                 'contents' => $quantityToPrint
