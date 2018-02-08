@@ -194,7 +194,7 @@ class OrderResponse
     }
 
     /**
-     * @param string $reference
+     * @param string $language
      *
      * @return OrderResponse
      */
