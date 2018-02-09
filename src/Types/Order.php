@@ -33,6 +33,11 @@ class Order
      */
     protected $orderLines = [];
 
+    /**
+     * @var string
+     */
+    protected $language;
+
     public function __construct(
         $reference,
         DateTime $date,

@@ -42,9 +42,6 @@ class OrderResponse
     /** @var string */
     protected $tracking;
 
-    /** @var string */
-    protected $language;
-
     /**
      * @return string
      */
@@ -181,26 +178,6 @@ class OrderResponse
     public function setOrderLines($orderLines)
     {
         $this->orderLines = $orderLines;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param string $language
-     *
-     * @return OrderResponse
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
 
         return $this;
     }

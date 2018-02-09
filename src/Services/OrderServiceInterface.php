@@ -61,7 +61,6 @@ interface OrderServiceInterface
      * @param DateTime     $date
      * @param Address|null $address
      * @param OrderLine[]  $orderLines
-     * @param $language
      *
      * @return SuccessResponse
      */
