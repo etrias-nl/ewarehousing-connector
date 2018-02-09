@@ -33,16 +33,23 @@ class Order
      */
     protected $orderLines = [];
 
+    /**
+     * @var string
+     */
+    protected $language;
+
     public function __construct(
         $reference,
         DateTime $date,
         Address $address,
-        array $orderLines
+        array $orderLines,
+        $language = 'nl'
     ) {
         $this->reference = $reference;
         $this->date = $date;
         $this->address = $address;
         $this->orderLines = $orderLines;
+        $this->language = $language;
     }
 
     /**
@@ -121,6 +128,26 @@ class Order
     public function setOrderLines($orderLines)
     {
         $this->orderLines = $orderLines;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param string $language
+     *
+     * @return Order
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
 
         return $this;
     }
