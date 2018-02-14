@@ -68,9 +68,6 @@ class InboundLine
      */
     public function getDate()
     {
-        var_dump('blaat');
-        die($this->date);
-
         return $this->date;
     }
 
