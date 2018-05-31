@@ -56,6 +56,7 @@ class Order
         $this->address = $address;
         $this->orderLines = $orderLines;
         $this->language = $language;
+        $this->shippingMethod = $shippingMethod;
     }
 
     /**

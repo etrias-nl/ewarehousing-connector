@@ -117,6 +117,7 @@ class OrderService implements OrderServiceInterface
             'date' => $date->format('Y-m-d'),
             'address' => $this->serializer->serialize($address, 'array'),
             'order_lines' => $this->serializer->serialize($orderLines, 'array'),
+            'shipping_method' => $shippingMethod,
         ];
 
         $guzzleResponse = $this->client->post('/1/orders/update', [RequestOptions::FORM_PARAMS => $data]);
