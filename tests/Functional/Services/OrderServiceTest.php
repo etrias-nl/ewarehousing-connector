@@ -59,7 +59,7 @@ class OrderServiceTest extends BaseServiceTest
     {
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
         $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 5);
-        $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine], 'nl');
+        $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine], 'nl', '123-test');
         $response = $this->service->addOrder($order);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
@@ -69,7 +69,7 @@ class OrderServiceTest extends BaseServiceTest
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
         $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 2);
 
-        $response = $this->service->updateOrder(static::$reference, new DateTime('today'), $address, [$orderLine]);
+        $response = $this->service->updateOrder(static::$reference, new DateTime('today'), $address, [$orderLine], '456-test');
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
 

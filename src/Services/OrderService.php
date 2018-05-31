@@ -109,7 +109,8 @@ class OrderService implements OrderServiceInterface
         $reference,
         DateTime $date,
         Address $address = null,
-        array $orderLines = null
+        array $orderLines = null,
+        $shippingMethod = null
     ) {
         $data = [
             'reference' => $reference,

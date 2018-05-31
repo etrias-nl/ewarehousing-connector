@@ -61,10 +61,11 @@ interface OrderServiceInterface
      * @param DateTime     $date
      * @param Address|null $address
      * @param OrderLine[]  $orderLines
+     * @param string|null  $shippingMethod
      *
      * @return SuccessResponse
      */
-    public function updateOrder($reference, DateTime $date, Address $address = null, array $orderLines = null);
+    public function updateOrder($reference, DateTime $date, Address $address = null, array $orderLines = null, $shippingMethod = null);
 
     /**
      * @param string            $reference
