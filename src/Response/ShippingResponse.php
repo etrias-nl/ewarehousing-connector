@@ -12,45 +12,39 @@
 
 namespace Etrias\EwarehousingConnector\Response;
 
-use DateTime;
-use Etrias\EwarehousingConnector\Types\InboundResponseLine;
-
-class InboundResponse
+class ShippingResponse
 {
-    /** @var DateTime */
-    protected $date;
+    /** @var string */
+    protected $id;
 
     /** @var string */
-    protected $reference;
+    protected $distributor;
 
     /** @var string */
-    protected $status;
+    protected $code;
 
     /** @var string */
-    protected $statusCode;
+    protected $description;
 
     /** @var string */
-    protected $typeCode;
-
-    /** @var InboundResponseLine[] */
-    protected $inboundLines;
+    protected $type;
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDate()
+    public function getId()
     {
-        return $this->date;
+        return $this->id;
     }
 
     /**
-     * @param DateTime $date
+     * @param string $id
      *
-     * @return InboundResponse
+     * @return ShippingResponse
      */
-    public function setDate($date)
+    public function setId($id)
     {
-        $this->date = $date;
+        $this->id = $id;
 
         return $this;
     }
@@ -58,19 +52,19 @@ class InboundResponse
     /**
      * @return string
      */
-    public function getReference()
+    public function getDistributor()
     {
-        return $this->reference;
+        return $this->distributor;
     }
 
     /**
-     * @param string $reference
+     * @param string $distributor
      *
-     * @return InboundResponse
+     * @return ShippingResponse
      */
-    public function setReference($reference)
+    public function setDistributor($distributor)
     {
-        $this->reference = $reference;
+        $this->distributor = $distributor;
 
         return $this;
     }
@@ -78,19 +72,19 @@ class InboundResponse
     /**
      * @return string
      */
-    public function getStatus()
+    public function getCode()
     {
-        return $this->status;
+        return $this->code;
     }
 
     /**
-     * @param string $status
+     * @param string $code
      *
-     * @return InboundResponse
+     * @return ShippingResponse
      */
-    public function setStatus($status)
+    public function setCode($code)
     {
-        $this->status = $status;
+        $this->code = $code;
 
         return $this;
     }
@@ -98,19 +92,19 @@ class InboundResponse
     /**
      * @return string
      */
-    public function getStatusCode()
+    public function getDescription()
     {
-        return $this->statusCode;
+        return $this->description;
     }
 
     /**
-     * @param string $statusCode
+     * @param string $description
      *
-     * @return InboundResponse
+     * @return ShippingResponse
      */
-    public function setStatusCode($statusCode)
+    public function setDescription($description)
     {
-        $this->statusCode = $statusCode;
+        $this->description = $description;
 
         return $this;
     }
@@ -118,39 +112,19 @@ class InboundResponse
     /**
      * @return string
      */
-    public function getTypeCode()
+    public function getType()
     {
-        return $this->typeCode;
+        return $this->type;
     }
 
     /**
-     * @param string $typeCode
+     * @param string $type
      *
-     * @return InboundResponse
+     * @return ShippingResponse
      */
-    public function setTypeCode($typeCode)
+    public function setType($type)
     {
-        $this->typeCode = $typeCode;
-
-        return $this;
-    }
-
-    /**
-     * @return InboundResponseLine[]
-     */
-    public function getInboundLines()
-    {
-        return $this->inboundLines;
-    }
-
-    /**
-     * @param InboundResponseLine[] $inboundLines
-     *
-     * @return InboundResponse
-     */
-    public function setInboundLines($inboundLines)
-    {
-        $this->inboundLines = $inboundLines;
+        $this->type = $type;
 
         return $this;
     }

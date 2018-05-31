@@ -12,15 +12,13 @@
 
 namespace Etrias\EwarehousingConnector\Services;
 
-use DateTime;
 use Etrias\EwarehousingConnector\Client\EwarehousingClient;
-use Etrias\EwarehousingConnector\Response\InboundResponse;
-use Etrias\EwarehousingConnector\Response\SuccessResponse;
+use Etrias\EwarehousingConnector\Response\ShippingResponse;
 use Etrias\EwarehousingConnector\Serializer\ServiceTrait;
 use GuzzleHttp\RequestOptions;
 use JMS\Serializer\SerializerInterface;
 
-class InboundService implements InboundServiceInterface
+class ShippingService implements ShippingServiceInterface
 {
     use ServiceTrait;
 
@@ -45,42 +43,22 @@ class InboundService implements InboundServiceInterface
     /**
      * {@inheritdoc}
      *
-     * @return InboundResponse[]
+     * @return ShippingResponse[]
      */
-    public function getListing(
-        DateTime $from = null,
-        DateTime $to = null,
-        $page = 1,
-        $sort = null,
-        $direction = null
+    public function getShippingMethods(
+        $distributor  = null,
+        $code = null,
+        $type = null
     ) {
         $data = [
-            'from' => $from ? $from->format('Y-m-d') : null,
-            'to' => $to ? $to->format('Y-m-d') : null,
-            'page' => $page,
-            'sort' => $sort,
-            'direction' => $direction,
+            'from' => $distributor,
+            'to' => $code,
+            'page' => $type
         ];
 
-        $guzzleResponse = $this->client->get('2/inbound', [RequestOptions::QUERY => $data]);
+        $guzzleResponse = $this->client->get('1/shippingmethods', [RequestOptions::QUERY => $data]);
 
-        return $this->deserializeResponse($guzzleResponse, 'array<'.InboundResponse::class.'>');
+        return $this->deserializeResponse($guzzleResponse, 'array<'.ShippingResponse::class.'>');
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return SuccessResponse
-     */
-    public function createInbound($reference, array $lines)
-    {
-        $data = [
-            'reference' => $reference,
-            'lines' => $this->serializer->serialize($lines, 'array'),
-        ];
-
-        $guzzleResponse = $this->client->post('2/inbound/create', [RequestOptions::FORM_PARAMS => $data]);
-
-        return $this->deserializeResponse($guzzleResponse, SuccessResponse::class);
-    }
 }

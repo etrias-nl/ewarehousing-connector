@@ -1,17 +1,12 @@
-Etrias\EwarehousingConnector\Response\InboundResponse:
+Etrias\EwarehousingConnector\Response\ShippingResponse:
   properties:
-    date:
-      type: DateTime<'Y-m-d'>
-    reference:
+    id:
       type: string
-    status:
+    distributor:
       type: string
-    statusCode:
+    code:
       type: string
-      serialized_name: status_code
-    typeCode:
+    description:
       type: string
-      serialized_name: type_code
-    inboundLines:
-      type: array<Etrias\EwarehousingConnector\Types\InboundResponseLine>
-      serialized_name: inbound_lines
+    type:
+      type: string

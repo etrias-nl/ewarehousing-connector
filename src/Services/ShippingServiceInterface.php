@@ -12,29 +12,17 @@
 
 namespace Etrias\EwarehousingConnector\Services;
 
-use DateTime;
-use Etrias\EwarehousingConnector\Response\InboundResponse;
-use Etrias\EwarehousingConnector\Response\SuccessResponse;
-use Etrias\EwarehousingConnector\Types\InboundLine;
+use Etrias\EwarehousingConnector\Response\ShippingResponse;
 
-interface InboundServiceInterface
+interface ShippingServiceInterface
 {
     /**
-     * @param DateTime      $from
-     * @param DateTime|null $to
-     * @param int           $page
-     * @param null          $sort
-     * @param null          $direction
+     * @param string|null   $distributor
+     * @param string|null   $code
+     * @param string|null   $type
      *
-     * @return InboundResponse[]
+     * @return ShippingResponse[]
      */
-    public function getListing(DateTime $from, DateTime $to = null, $page = 1, $sort = null, $direction = null);
+    public function getShippingMethods($distributor = null, $code = null, $type = null);
 
-    /**
-     * @param $reference
-     * @param InboundLine[] $lines
-     *
-     * @return SuccessResponse
-     */
-    public function createInbound($reference, array $lines);
 }

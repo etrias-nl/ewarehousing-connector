@@ -12,42 +12,29 @@
 
 namespace Tests\Etrias\EwarehousingConnector\Functional\Services;
 
-use DateTime;
-use Etrias\EwarehousingConnector\Response\InboundResponse;
-use Etrias\EwarehousingConnector\Response\SuccessResponse;
-use Etrias\EwarehousingConnector\Services\InboundService;
-use Etrias\EwarehousingConnector\Types\InboundLine;
+use Etrias\EwarehousingConnector\Services\ShippingService;
+use Etrias\EwarehousingConnector\Response\ShippingResponse;
 
 /**
  * @coversNothing
  */
-class InboundServiceTest extends BaseServiceTest
+class ShippingServiceTest extends BaseServiceTest
 {
-    /** @var InboundService */
+    /** @var ShippingService */
     protected $service;
-
-    protected static $reference;
 
     public function setUp()
     {
         parent::setUp();
-        $this->service = new InboundService($this->client, $this->serializer);
+        $this->service = new ShippingService($this->client, $this->serializer);
     }
 
-    public function testCreateInbound()
+    public function testGetShippingMethods()
     {
-        $response = $this->service->createInbound('order_844078270', [
-            new InboundLine('TESTcode', new DateTime('yesterday'), 2),
-        ]);
-
-        $this->assertInstanceOf(SuccessResponse::class, $response);
-    }
-
-    public function testGetListing()
-    {
-        $response = $this->service->getListing();
+        $response = $this->service->getShippingMethods();
+var_dump($response);
 
         $this->assertInternalType('array', $response);
-        $this->assertInstanceOf(InboundResponse::class, reset($response));
+        //$this->assertInstanceOf(ShippingResponse::class, reset($response));
     }
 }
