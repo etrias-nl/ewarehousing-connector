@@ -32,9 +32,8 @@ class ShippingServiceTest extends BaseServiceTest
     public function testGetShippingMethods()
     {
         $response = $this->service->getShippingMethods();
-var_dump($response);
 
         $this->assertInternalType('array', $response);
-        //$this->assertInstanceOf(ShippingResponse::class, reset($response));
+        $this->assertInstanceOf(ShippingResponse::class, reset($response));
     }
 }
