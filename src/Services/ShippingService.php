@@ -46,7 +46,7 @@ class ShippingService implements ShippingServiceInterface
      * @return ShippingResponse[]
      */
     public function getShippingMethods(
-        $distributor  = null,
+        $distributor = null,
         $code = null,
         $type = null
     ) {

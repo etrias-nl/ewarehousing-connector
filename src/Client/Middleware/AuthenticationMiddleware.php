@@ -35,7 +35,7 @@ class AuthenticationMiddleware
 
     public function __invoke(callable $handler)
     {
-        return function (RequestInterface $request, array $options) use ($handler) {
+        return function(RequestInterface $request, array $options) use ($handler) {
             $encodedAuth = base64_encode($this->authenticationService->getUsername().':'.$this->authenticationService->getHash());
             $request = $request->withHeader('Authorization', 'Basic '.$encodedAuth);
 

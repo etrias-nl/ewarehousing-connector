@@ -169,7 +169,7 @@ class OrderService implements OrderServiceInterface
     ) {
 
         if ($fileName === null) {
-            $fileName = $reference . '.pdf';
+            $fileName = $reference.'.pdf';
         }
 
         $data = [
