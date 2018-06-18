@@ -34,10 +34,6 @@ class ShippingServiceTest extends BaseServiceTest
 
     static public $reference;
 
-    static public $shippingMethodCreate;
-
-    static public $shippingMethodUpdate;
-
     public function setUp()
     {
         parent::setUp();
@@ -45,11 +41,6 @@ class ShippingServiceTest extends BaseServiceTest
         $this->orderService = new OrderService($this->client, $this->serializer);
         if (is_null(static::$reference)) {
             static::$reference = 'TE' . random_int(0, 99999999);
-        }
-        if (is_null(static::$shippingMethodCreate) && is_null(static::$shippingMethodUpdate)) {
-            $shippingMethods = $this->service->getShippingMethods(null, null, 'paazl');
-            static::$shippingMethodCreate = $shippingMethods[0]->getId();
-            static::$shippingMethodUpdate = $shippingMethods[1]->getId();
         }
     }
 
@@ -65,32 +56,49 @@ class ShippingServiceTest extends BaseServiceTest
     {
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
         $orderLine = new OrderLine('8711131842835', 'Test Product', 5);
+        $shippingMethods = $this->service->getShippingMethods(null, null, 'paazl');
+        $shippingMethodCreate = $shippingMethods[0]->getId();
         $order = new Order(
             static::$reference,
             new DateTime('today'),
             $address,
             [$orderLine],
             'nl',
-            static::$shippingMethodCreate
+            $shippingMethodCreate
         );
         $response = $this->orderService->addOrder($order);
         $this->assertInstanceOf(SuccessResponse::class, $response);
         $order = $this->orderService->getOrder(static::$reference);
-        $this->assertAttributeEquals(static::$shippingMethodCreate, 'shippingMethod', $order);
+        $this->assertAttributeEquals($shippingMethodCreate, 'shippingMethod', $order);
     }
 
     public function testUpdateOrderShippingMethod()
     {
-        $order = $this->orderService->getOrder(static::$reference);
-        $response = $this->orderService->updateOrder(
-            static::$reference,
+        $reference = 'TS' . random_int(0, 99999999);
+        $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
+        $orderLine = new OrderLine('8711131842835', 'Test Product', 5);
+        $shippingMethods = $this->service->getShippingMethods(null, null, 'paazl');
+        $shippingMethodCreate = $shippingMethods[0]->getId();
+        $order = new Order(
+            $reference,
             new DateTime('today'),
-            $order->getDeliveryAddress(),
+            $address,
+            [$orderLine],
+            'nl',
+            $shippingMethodCreate
+        );
+        $response = $this->orderService->addOrder($order);
+        $this->assertInstanceOf(SuccessResponse::class, $response);
+        $shippingMethodUpdate = $shippingMethods[1]->getId();
+        $response = $this->orderService->updateOrder(
+            $reference,
+            new DateTime('today'),
+            $address,
             $order->getOrderLines(),
-            static::$shippingMethodUpdate
+            $shippingMethodUpdate
         );
         $this->assertInstanceOf(SuccessResponse::class, $response);
-        $order = $this->orderService->getOrder(static::$reference);
-        $this->assertAttributeEquals(static::$shippingMethodUpdate, 'shippingMethod', $order);
+        $order = $this->orderService->getOrder($reference);
+        $this->assertAttributeEquals($shippingMethodUpdate, 'shippingMethod', $order);
     }
 }
