@@ -1,0 +1,12 @@
+Etrias\EwarehousingConnector\Response\ShippingResponse:
+  properties:
+    id:
+      type: string
+    distributor:
+      type: string
+    code:
+      type: string
+    description:
+      type: string
+    type:
+      type: string

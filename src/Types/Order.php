@@ -38,18 +38,25 @@ class Order
      */
     protected $language;
 
+    /**
+     * @var string
+     */
+    protected $shippingMethod;
+
     public function __construct(
         $reference,
         DateTime $date,
         Address $address,
         array $orderLines,
-        $language = 'nl'
+        $language = 'nl',
+        $shippingMethod = null
     ) {
         $this->reference = $reference;
         $this->date = $date;
         $this->address = $address;
         $this->orderLines = $orderLines;
         $this->language = $language;
+        $this->shippingMethod = $shippingMethod;
     }
 
     /**
@@ -148,6 +155,26 @@ class Order
     public function setLanguage($language)
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+
+    /**
+     * @param string $shippingMethod
+     *
+     * @return Order
+     */
+    public function setShippingMethod($shippingMethod)
+    {
+        $this->shippingMethod = $shippingMethod;
 
         return $this;
     }

@@ -17,4 +17,8 @@ Etrias\EwarehousingConnector\Response\OrderResponse:
       serialized_name: order_lines
     tracking:
       type: string
+    shippingMethod:
+      type: string
+      serialized_name: shipping_method
+
 

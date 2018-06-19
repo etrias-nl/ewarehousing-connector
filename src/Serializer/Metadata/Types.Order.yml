@@ -11,3 +11,6 @@ Etrias\EwarehousingConnector\Types\Order:
       serialized_name: order_lines
     language:
       type: string
+    shippingMethod:
+      type: string
+      serialized_name: shipping_method
