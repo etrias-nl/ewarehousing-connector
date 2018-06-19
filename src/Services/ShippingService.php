@@ -51,9 +51,9 @@ class ShippingService implements ShippingServiceInterface
         $type = null
     ) {
         $data = [
-            'from' => $distributor,
-            'to' => $code,
-            'page' => $type
+            'distributor' => $distributor,
+            'code' => $code,
+            'type' => $type
         ];
 
         $guzzleResponse = $this->client->get('1/shippingmethods', [RequestOptions::QUERY => $data]);
