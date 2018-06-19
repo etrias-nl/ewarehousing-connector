@@ -42,6 +42,9 @@ class OrderResponse
     /** @var string */
     protected $tracking;
 
+    /** @var string */
+    protected $shippingMethod;
+
     /**
      * @return string
      */
@@ -198,6 +201,26 @@ class OrderResponse
     public function setTracking($tracking)
     {
         $this->tracking = $tracking;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShippingMethod()
+    {
+        return $this->shippingMethod;
+    }
+
+    /**
+     * @param string $shippingMethod
+     *
+     * @return OrderResponse
+     */
+    public function setShippingMethod($shippingMethod)
+    {
+        $this->shippingMethod = $shippingMethod;
 
         return $this;
     }

@@ -40,6 +40,13 @@ class StockServiceTest extends BaseServiceTest
         $this->assertInstanceOf(StockResponse::class, reset($response));
     }
 
+    public function testListVariants()
+    {
+        $response = $this->service->listVariants();
+        $this->assertInternalType('array', $response);
+        $this->assertInstanceOf(StockResponse::class, reset($response));
+    }
+
     public function testUpdateStock()
     {
         $response = $this->service->updateStock('190325090616', 99, 45);

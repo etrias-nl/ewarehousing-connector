@@ -11,6 +11,9 @@ Etrias\EwarehousingConnector\Response\StockResponse:
     fysicalStock:
       type: float
       serialized_name: fysical_stock
+    physicalStock:
+      type: float
+      serialized_name: physical_stock
     salableStock:
       type: float
       serialized_name: salable_stock

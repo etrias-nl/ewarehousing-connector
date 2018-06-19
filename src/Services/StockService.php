@@ -74,6 +74,35 @@ class StockService implements StockServiceInterface
     /**
      * {@inheritdoc}
      *
+     * @return StockResponse[]
+     */
+    public function listVariants(
+        array $articleCodes = null,
+        $articleDescription = null,
+        DateTime $updatedAfter = null,
+        $page = 1,
+        $limit = 1000,
+        $sort = null,
+        $direction = null
+    ) {
+        $data = [
+            'article_code' => $articleCodes,
+            'article_description' => $articleDescription,
+            'updated_after' => $updatedAfter ? $updatedAfter->format('Y-m-d') : null,
+            'page' => $page,
+            'sort' => $sort,
+            'direction' => $direction,
+            'limit' => $limit,
+        ];
+
+        $guzzleResponse = $this->client->get('1/variant', [RequestOptions::QUERY => $data]);
+
+        return $this->deserializeResponse($guzzleResponse, 'array<'.StockResponse::class.'>');
+    }
+
+    /**
+     * {@inheritdoc}
+     *
      * @return SuccessResponse
      */
     public function updateStock($articleCode, $minStock, $margin)

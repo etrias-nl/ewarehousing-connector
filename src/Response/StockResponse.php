@@ -30,6 +30,9 @@ class StockResponse
     protected $fysicalStock;
 
     /** @var float */
+    protected $physicalStock;
+
+    /** @var float */
     protected $salableStock;
 
     /** @var float */
@@ -135,6 +138,26 @@ class StockResponse
     public function setFysicalStock($fysicalStock)
     {
         $this->fysicalStock = $fysicalStock;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPhysicalStock()
+    {
+        return $this->physicalStock;
+    }
+
+    /**
+     * @param float $physicalStock
+     *
+     * @return StockResponse
+     */
+    public function setPhysicalStock($physicalStock)
+    {
+        $this->physicalStock = $physicalStock;
 
         return $this;
     }

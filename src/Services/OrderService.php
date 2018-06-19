@@ -109,13 +109,15 @@ class OrderService implements OrderServiceInterface
         $reference,
         DateTime $date,
         Address $address = null,
-        array $orderLines = null
+        array $orderLines = null,
+        $shippingMethod = null
     ) {
         $data = [
             'reference' => $reference,
             'date' => $date->format('Y-m-d'),
             'address' => $this->serializer->serialize($address, 'array'),
             'order_lines' => $this->serializer->serialize($orderLines, 'array'),
+            'shipping_method' => $shippingMethod,
         ];
 
         $guzzleResponse = $this->client->post('/1/orders/update', [RequestOptions::FORM_PARAMS => $data]);
@@ -167,7 +169,7 @@ class OrderService implements OrderServiceInterface
     ) {
 
         if ($fileName === null) {
-            $fileName = $reference . '.pdf';
+            $fileName = $reference.'.pdf';
         }
 
         $data = [

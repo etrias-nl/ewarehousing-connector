@@ -9,3 +9,8 @@ Etrias\EwarehousingConnector\Types\Order:
     orderLines:
       type: array<Etrias\EwarehousingConnector\Types\OrderLine>
       serialized_name: order_lines
+    language:
+      type: string
+    shippingMethod:
+      type: string
+      serialized_name: shipping_method

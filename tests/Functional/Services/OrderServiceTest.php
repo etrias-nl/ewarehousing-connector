@@ -29,17 +29,15 @@ class OrderServiceTest extends BaseServiceTest
     /** @var OrderService */
     protected $service;
 
-    protected static $reference;
-
-    public static function setUpBeforeClass()
-    {
-        static::$reference = 'order_'.random_int(0, PHP_INT_MAX);
-    }
+    static public $reference;
 
     public function setUp()
     {
         parent::setUp();
         $this->service = new OrderService($this->client, $this->serializer);
+        if (is_null(static::$reference)) {
+            static::$reference = 'TE' . random_int(0, 99999999);
+        }
     }
 
     public function testGetListing()
@@ -61,7 +59,7 @@ class OrderServiceTest extends BaseServiceTest
     {
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
         $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 5);
-        $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine]);
+        $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine], 'nl');
         $response = $this->service->addOrder($order);
         $this->assertInstanceOf(SuccessResponse::class, $response);
     }
