@@ -59,7 +59,8 @@ class OrderService implements OrderServiceInterface
         $page = 1,
         $status = null,
         $sort = null,
-        $direction = null
+        $direction = null,
+        DateTime $updatedAfter = null
     ) {
         $data = [
             'from' => $from->format('Y-m-d'),
@@ -69,6 +70,9 @@ class OrderService implements OrderServiceInterface
             'sort' => $sort,
             'direction' => $direction,
         ];
+        if ($updatedAfter) {
+            $data['updated_after'] = $updatedAfter->format('Y-m-d H:i:s');
+        }
 
         $guzzleResponse = $this->client->get('3/orders', [RequestOptions::QUERY => $data]);
 

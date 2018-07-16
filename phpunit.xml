@@ -17,9 +17,9 @@
             verbose="false"
     >
     <php>
-        <env name="WEBSHOPID" value=""/>
-        <env name="CUSTOMERID" value=""/>
-        <env name="PASSWORD" value=""/>
+        <env name="WEBSHOPID" value="61"/>
+        <env name="CUSTOMERID" value="61"/>
+        <env name="PASSWORD" value="36035"/>
     </php>
 
     <testsuites>
