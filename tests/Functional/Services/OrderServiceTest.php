@@ -139,4 +139,19 @@ class OrderServiceTest extends BaseServiceTest
         $this->assertInternalType('array', $response);
     }
 
+    public function testGetListingToday()
+    {
+        $response = $this->service->getListing(
+            new DateTime('- 1 month'),
+            new DateTime('today'),
+            1,
+            null,
+            null,
+            null,
+            new DateTime('yesterday')
+        );
+
+        $this->assertInternalType('array', $response);
+        $this->assertInstanceOf(OrderResponse::class, reset($response));
+    }
 }

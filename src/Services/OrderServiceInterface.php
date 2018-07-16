@@ -24,12 +24,13 @@ use Etrias\EwarehousingConnector\Types\OrderLine;
 interface OrderServiceInterface
 {
     /**
-     * @param DateTime    $from
-     * @param DateTime    $to
-     * @param int         $page
-     * @param string|null $status
-     * @param string|null $sort
-     * @param string|null $direction
+     * @param DateTime      $from
+     * @param DateTime      $to
+     * @param int           $page
+     * @param string|null   $status
+     * @param string|null   $sort
+     * @param string|null   $direction
+     * @param DateTime|null $updatedAfter
      *
      * @return OrderResponse[]
      */
@@ -39,7 +40,8 @@ interface OrderServiceInterface
         $page = 1,
         $status = null,
         $sort = null,
-        $direction = null
+        $direction = null,
+        DateTime $updatedAfter = null
     );
 
     /**
