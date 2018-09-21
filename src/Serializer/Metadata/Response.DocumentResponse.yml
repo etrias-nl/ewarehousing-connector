@@ -1,0 +1,24 @@
+Etrias\EwarehousingConnector\Response\DocumentResponse:
+  properties:
+    id:
+      type: string
+    orderId:
+      type: string
+      serialized_name: order_id
+    externalReference:
+      type: string
+      serialized_name: external_reference
+    status:
+      type: string
+    title:
+      type: string
+    mimetype:
+      type: string
+    quantity:
+      type: integer
+    shippingLabel:
+      type: boolean
+      serialized_name: shipping_label
+    createdAt:
+      type: DateTime<'Y-m-d H:i:s'>
+      serialized_name: created_at
