@@ -47,6 +47,9 @@ class Address
     /** @var string e.g. NL, EN */
     protected $country;
 
+    /** @var  string */
+    protected $streetAddition;
+
     public function __construct(
         $addressee,
         $street,
@@ -219,6 +222,26 @@ class Address
     public function setStreetNumber($streetNumber)
     {
         $this->streetNumber = $streetNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStreetAddition()
+    {
+        return $this->streetAddition ? $this->streetAddition : '';
+    }
+
+    /**
+     * @param string $streetAddition
+     *
+     * @return Address
+     */
+    public function setStreetAddition($streetAddition)
+    {
+        $this->streetAddition = $streetAddition;
 
         return $this;
     }

@@ -30,3 +30,6 @@ Etrias\EwarehousingConnector\Types\Address:
       serialized_name: fax_number
     email:
       type: string
+    streetAddition:
+      type: string
+      serialized_name: street2
