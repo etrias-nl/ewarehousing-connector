@@ -60,6 +60,7 @@ class OrderServiceTest extends BaseServiceTest
     public function testAddOrder()
     {
         $address = new Address('test', 'street', '23', '1000AA', 'Amsterdam', 'NL');
+        $address->setStreetAddition('Digicode: 123');
         $orderLine = new OrderLine('8711131842835', 'WC-mat Sealskin Amy Turquoise', 5);
         $order = new Order(static::$reference, new DateTime('today'), $address, [$orderLine]);
         $response = $this->service->addOrder($order);
