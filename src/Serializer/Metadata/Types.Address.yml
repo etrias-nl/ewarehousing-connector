@@ -11,7 +11,7 @@ Etrias\EwarehousingConnector\Types\Address:
       serialized_name: street_number
     numberExtension:
       type: string
-      serialized_name: number_extension
+      serialized_name: number_extention
     zipcode:
       type: string
     city:
