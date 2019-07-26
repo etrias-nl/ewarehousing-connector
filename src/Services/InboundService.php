@@ -76,7 +76,7 @@ class InboundService implements InboundServiceInterface
     {
         $data = [
             'reference' => $reference,
-            'lines' => $this->serializer->serialize($lines, 'array'),
+            'lines' => json_decode($this->serializer->serialize($lines, 'json'), true),
         ];
 
         $guzzleResponse = $this->client->post('2/inbound/create', [RequestOptions::FORM_PARAMS => $data]);

@@ -126,7 +126,7 @@ class StockService implements StockServiceInterface
     public function createStock(array $products = [])
     {
         $data = [
-            'products' => $this->serializer->serialize($products, 'array'),
+            'products' => json_decode($this->serializer->serialize($products, 'json'), true),
         ];
 
         $guzzleResponse = $this->client->post('2/stock/create', [RequestOptions::FORM_PARAMS => $data]);

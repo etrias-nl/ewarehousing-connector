@@ -119,8 +119,8 @@ class OrderService implements OrderServiceInterface
         $data = [
             'reference' => $reference,
             'date' => $date->format('Y-m-d'),
-            'address' => $this->serializer->serialize($address, 'array'),
-            'order_lines' => $this->serializer->serialize($orderLines, 'array'),
+            'address' => json_decode($this->serializer->serialize($address, 'json'), true),
+            'order_lines' => json_decode($this->serializer->serialize($orderLines, 'json'), true),
             'shipping_method' => $shippingMethod,
         ];
 
@@ -139,7 +139,7 @@ class OrderService implements OrderServiceInterface
         array $orderLines = []
     ) {
         $data = [
-            'order_lines' => $this->serializer->serialize($orderLines, 'array'),
+            'order_lines' => json_decode($this->serializer->serialize($orderLines, 'json'), true),
         ];
 
         $guzzleResponse = $this->client->post('/2/orders/cancel/'.$reference, [RequestOptions::FORM_PARAMS => $data]);
