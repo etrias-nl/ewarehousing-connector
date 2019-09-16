@@ -11,6 +11,8 @@ Etrias\EwarehousingConnector\Types\InboundResponseLine:
       serialized_name: article_code
     quantity:
       type: float
+    processed:
+      type: float
     skuUnit:
       type: string
       serialized_name: skuunit
