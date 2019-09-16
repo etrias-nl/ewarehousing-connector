@@ -18,19 +18,30 @@ class InboundResponseLine
      * @var string
      */
     protected $itemId;
+
     /**
      * @var string
      */
     protected $articleCode;
+
     /**
      * @var string
      */
     protected $variant;
 
-    /** @var float */
+    /**
+     * @var float
+     */
     protected $quantity;
 
-    /** @var string */
+    /**
+     * @var float
+     */
+    protected $processed;
+
+    /**
+     * @var string
+     */
     protected $skuUnit;
 
     /**
@@ -109,6 +120,25 @@ class InboundResponseLine
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * @param float $processed
+     * @return InboundResponseLine
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
 
         return $this;
     }
